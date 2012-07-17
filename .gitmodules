@@ -1,0 +1,21 @@
+[submodule "lib/mongodb-distinct-types"]
+	path = lib/mongodb-distinct-types
+	url = https://github.com/skratchdot/mongodb-distinct-types.git
+[submodule "lib/mongodb-flatten"]
+	path = lib/mongodb-flatten
+	url = https://github.com/skratchdot/mongodb-flatten.git
+[submodule "lib/mongodb-schema"]
+	path = lib/mongodb-schema
+	url = https://github.com/skratchdot/mongodb-schema.git
+[submodule "lib/mongodb-wild"]
+	path = lib/mongodb-wild
+	url = https://github.com/skratchdot/mongodb-wild.git
+[submodule "lib/underscore"]
+	path = lib/underscore
+	url = https://github.com/documentcloud/underscore.git
+[submodule "lib/underscore.string"]
+	path = lib/underscore.string
+	url = https://github.com/epeli/underscore.string.git
+[submodule "lib/moment"]
+	path = lib/moment
+	url = https://github.com/timrwood/moment.git
