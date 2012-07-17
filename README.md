@@ -1,6 +1,5 @@
-==================================
-mesh - MongoDB Extended Shell
-==================================
+ mesh - MongoDB Extended Shell
+===============================
 
 
 ## Description ##
@@ -18,13 +17,13 @@ for dealing with Mongo collections and queries.
 
 - [moment.js](http://momentjs.com/)
 
-- [distinctTypes()](http://skratchdot.com/projects/mongodb-distinct-types/) - 
+- [distinctTypes()](http://skratchdot.com/projects/mongodb-distinct-types/)
 
-- [flatten()](http://skratchdot.com/projects/mongodb-flatten/) -
+- [flatten()](http://skratchdot.com/projects/mongodb-flatten/)
 
-- [schema()](http://skratchdot.com/projects/mongodb-schema/) -
+- [schema()](http://skratchdot.com/projects/mongodb-schema/)
 
-- [wild()](http://skratchdot.com/projects/mongodb-wild/) -
+- [wild()](http://skratchdot.com/projects/mongodb-wild/)
 
 - A console wrapper so calls like console.log() and console.dir() don't error out
 
@@ -58,7 +57,9 @@ you won't lose your default settings when updating mesh. Currently, there is onl
 
 You can create a file "mesh.config.js".  It might look like:
 
-    mesh.config({ defaultPrompt: 4});
+    mesh.config({
+        defaultPrompt : 4
+    });
 
 Now, when starting the shell, you can pass in the "mesh.config.js" file along with your mesh.js file like:
 
