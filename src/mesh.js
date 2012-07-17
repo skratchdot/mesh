@@ -77,6 +77,8 @@ var mesh = mesh || (function (global) {
 	/*
 	 * Sets the default prompt.
 	 * 
+	 * See: http://www.kchodorow.com/blog/2011/06/27/ps1/
+	 * 
 	 * newPrompt can be a function, or a number:
 	 * 
 	 *   0: '>' reset to default prompt
