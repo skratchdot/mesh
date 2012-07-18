@@ -62,7 +62,7 @@ var mesh = mesh || (function (global) {
 	 * Print the current version
 	 */
 	api.version = function () {
-		return print('mesh (the MongoDB Extended Shell), version 1.0.0');
+		return print('mesh (the MongoDB Extended Shell) version: 1.0.0');
 	};
 
 	/*
