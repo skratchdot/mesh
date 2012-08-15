@@ -17,6 +17,8 @@ for dealing with Mongo collections and queries.
 
 - [moment.js](http://momentjs.com/)
 
+- [distinct2()](http://skratchdot.com/projects/mongodb-distinct2/)
+
 - [distinctTypes()](http://skratchdot.com/projects/mongodb-distinct-types/)
 
 - [flatten()](http://skratchdot.com/projects/mongodb-flatten/)
