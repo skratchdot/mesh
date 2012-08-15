@@ -19,3 +19,6 @@
 [submodule "lib/moment"]
 	path = lib/moment
 	url = https://github.com/timrwood/moment.git
+[submodule "lib/mongodb-distinct2"]
+	path = lib/mongodb-distinct2
+	url = https://github.com/skratchdot/mongodb-distinct2.git

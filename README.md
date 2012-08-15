@@ -83,3 +83,8 @@ coming soon
 #### v1.0.0 - Released July 17, 2012 ####
   * Initial Release
 
+#### v1.1.0 - Released August 15, 2012 ####
+  * Updating submodules
+  * Adding [distinct2.js](http://skratchdot.com/projects/mongodb-distinct2/)
+  * implementing mesh.toString() so the console prints help info
+

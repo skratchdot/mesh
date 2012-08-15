@@ -3,8 +3,8 @@
 /*!
  * mesh - the MongoDB Extended Shell
  * 
- *      Version: 1.0.0
- *         Date: July 17, 2012
+ *      Version: 1.1.0
+ *         Date: August 15, 2012
  *      Project: http://skratchdot.com/projects/mesh/
  *  Source Code: https://github.com/skratchdot/mesh/
  *       Issues: https://github.com/skratchdot/mesh/issues/
@@ -44,6 +44,14 @@ var mesh = mesh || (function (global) {
 	};
 
 	/*
+	 * Override mesh.toString() so it calls mesh.help();
+	 */
+	api.toString = function () {
+		api.help();
+		return "";
+	};
+
+	/*
 	 * We can override the default settings by calling this function.
 	 * 
 	 * The idea is to keep a "mesh.config.js" file that calls this function.
@@ -62,7 +70,7 @@ var mesh = mesh || (function (global) {
 	 * Print the current version
 	 */
 	api.version = function () {
-		return print('mesh (the MongoDB Extended Shell) version: 1.0.0');
+		return print('mesh (the MongoDB Extended Shell) version: 1.1.0');
 	};
 
 	/*
@@ -71,7 +79,8 @@ var mesh = mesh || (function (global) {
 	 * TODO: make sure that "help mesh" works as well by overriding default mongo help()
 	 */
 	api.help = function () {
-		return print('help coming soon!');
+		api.version();
+		print('help coming soon!');
 	};
 
 	/*
