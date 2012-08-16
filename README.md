@@ -25,7 +25,7 @@ for dealing with Mongo collections and queries.
   function, but with more capabilities.
 
 - [distinctTypes()](http://skratchdot.com/projects/mongodb-distinct-types/) - Similar to the 
-  db.myCollection.distinct() function, distinctTypes() will return “types” rather than “values”.
+  db.myCollection.distinct() function, distinctTypes() will return "types" rather than "values".
 
 - [flatten()](http://skratchdot.com/projects/mongodb-flatten/) - The flatten() function is a 
   mapReduce that flattens documents into key/value pairs.
