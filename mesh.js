@@ -3,8 +3,8 @@
 /*!
  * mesh - the MongoDB Extended Shell
  * 
- *      Version: 1.1.0
- *         Date: August 15, 2012
+ *      Version: 1.1.1
+ *         Date: August 16, 2012
  *      Project: http://skratchdot.com/projects/mesh/
  *  Source Code: https://github.com/skratchdot/mesh/
  *       Issues: https://github.com/skratchdot/mesh/issues/
@@ -70,7 +70,7 @@ var mesh = mesh || (function (global) {
 	 * Print the current version
 	 */
 	api.version = function () {
-		return print('mesh (the MongoDB Extended Shell) version: 1.1.0');
+		return print('mesh (the MongoDB Extended Shell) version: 1.1.1');
 	};
 
 	/*
@@ -220,32 +220,41 @@ function(a){var b=N++;return a?a+b:b};b.templateSettings={evaluate:/<%([\s\S]+?)
 u,function(a,b){return"'+\n_.escape("+w(b)+")+\n'"}).replace(d.interpolate||u,function(a,b){return"'+\n("+w(b)+")+\n'"}).replace(d.evaluate||u,function(a,b){return"';\n"+w(b)+"\n;__p+='"})+"';\n";d.variable||(a="with(obj||{}){\n"+a+"}\n");var a="var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};\n"+a+"return __p;\n",e=new Function(d.variable||"obj","_",a);if(c)return e(c,b);c=function(a){return e.call(this,a,b)};c.source="function("+(d.variable||"obj")+"){\n"+a+"}";return c};
 b.chain=function(a){return b(a).chain()};var m=function(a){this._wrapped=a};b.prototype=m.prototype;var x=function(a,c){return c?b(a).chain():a},M=function(a,c){m.prototype[a]=function(){var a=i.call(arguments);J.call(a,this._wrapped);return x(c.apply(b,a),this._chain)}};b.mixin(b);j("pop,push,reverse,shift,sort,splice,unshift".split(","),function(a){var b=k[a];m.prototype[a]=function(){var d=this._wrapped;b.apply(d,arguments);var e=d.length;(a=="shift"||a=="splice")&&e===0&&delete d[0];return x(d,
 this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a]=function(){return x(b.apply(this._wrapped,arguments),this._chain)}});m.prototype.chain=function(){this._chain=true;return this};m.prototype.value=function(){return this._wrapped}}).call(this);
-!function(a){"use strict";var b=String.prototype.trim,c=String.prototype.trimRight,d=String.prototype.trimLeft,e=function(a){return a*1||0},f=function(a,b){if(b<1)return"";var c="";while(b>0)b&1&&(c+=a),b>>=1,a+=a;return c},g=[].slice,h=function(a,b,c){return(""+a).replace(b,c)},i=function(a){return a!=null?"["+o.escapeRegExp(a)+"]":"\\s"},j=function(a,b){a+="",b+="";var c=[],d,e;for(var f=0;f<=b.length;f++)for(var g=0;g<=a.length;g++)f&&g?a.charAt(g-1)===b.charAt(f-1)?e=d:e=Math.min(c[g],c[g-1],d)+1:e=f+g,d=c[g],c[g]=e;return c.pop()},k={lt:"<",gt:">",quot:'"',apos:"'",amp:"&"},l={};for(var m in k)l[k[m]]=m;var n=function(){function a(a){return Object.prototype.toString.call(a).slice(8,-1).toLowerCase()}var b=f,c=function(){return c.cache.hasOwnProperty(arguments[0])||(c.cache[arguments[0]]=c.parse(arguments[0])),c.format.call(null,c.cache[arguments[0]],arguments)};return c.format=function(c,d){var e=1,f=c.length,g="",h,i=[],j,k,l,m,o,p;for(j=0;j<f;j++){g=a(c[j]);if(g==="string")i.push(c[j]);else if(g==="array"){l=c[j];if(l[2]){h=d[e];for(k=0;k<l[2].length;k++){if(!h.hasOwnProperty(l[2][k]))throw new Error(n('[_.sprintf] property "%s" does not exist',l[2][k]));h=h[l[2][k]]}}else l[1]?h=d[l[1]]:h=d[e++];if(/[^s]/.test(l[8])&&a(h)!="number")throw new Error(n("[_.sprintf] expecting number but found %s",a(h)));switch(l[8]){case"b":h=h.toString(2);break;case"c":h=String.fromCharCode(h);break;case"d":h=parseInt(h,10);break;case"e":h=l[7]?h.toExponential(l[7]):h.toExponential();break;case"f":h=l[7]?parseFloat(h).toFixed(l[7]):parseFloat(h);break;case"o":h=h.toString(8);break;case"s":h=(h=String(h))&&l[7]?h.substring(0,l[7]):h;break;case"u":h=Math.abs(h);break;case"x":h=h.toString(16);break;case"X":h=h.toString(16).toUpperCase()}h=/[def]/.test(l[8])&&l[3]&&h>=0?"+"+h:h,o=l[4]?l[4]=="0"?"0":l[4].charAt(1):" ",p=l[6]-String(h).length,m=l[6]?b(o,p):"",i.push(l[5]?h+m:m+h)}}return i.join("")},c.cache={},c.parse=function(a){var b=a,c=[],d=[],e=0;while(b){if((c=/^[^\x25]+/.exec(b))!==null)d.push(c[0]);else if((c=/^\x25{2}/.exec(b))!==null)d.push("%");else{if((c=/^\x25(?:([1-9]\d*)\$|\(([^\)]+)\))?(\+)?(0|'[^$])?(-)?(\d+)?(?:\.(\d+))?([b-fosuxX])/.exec(b))===null)throw new Error("[_.sprintf] huh?");if(c[2]){e|=1;var f=[],g=c[2],h=[];if((h=/^([a-z_][a-z_\d]*)/i.exec(g))===null)throw new Error("[_.sprintf] huh?");f.push(h[1]);while((g=g.substring(h[0].length))!=="")if((h=/^\.([a-z_][a-z_\d]*)/i.exec(g))!==null)f.push(h[1]);else{if((h=/^\[(\d+)\]/.exec(g))===null)throw new Error("[_.sprintf] huh?");f.push(h[1])}c[2]=f}else e|=2;if(e===3)throw new Error("[_.sprintf] mixing positional and named placeholders is not (yet) supported");d.push(c)}b=b.substring(c[0].length)}return d},c}(),o={VERSION:"2.2.0rc",isBlank:function(a){return/^\s*$/.test(a)},stripTags:function(a){return h(a,/<\/?[^>]+>/g,"")},capitalize:function(a){return a+="",a.charAt(0).toUpperCase()+a.slice(1)},chop:function(a,b){return a+="",b=~~b,b>0?a.match(new RegExp(".{1,"+b+"}","g")):[a]},clean:function(a){return o.strip(a).replace(/\s+/g," ")},count:function(a,b){return a+="",b+="",a.split(b).length-1},chars:function(a){return(""+a).split("")},swapCase:function(a){return h(a,/\S/g,function(a){return a===a.toUpperCase()?a.toLowerCase():a.toUpperCase()})},escapeHTML:function(a){return h(a,/[&<>"']/g,function(a){return"&"+l[a]+";"})},unescapeHTML:function(a){return h(a,/\&([^;]+);/g,function(a,b){var c;return b in k?k[b]:(c=b.match(/^#x([\da-fA-F]+)$/))?String.fromCharCode(parseInt(c[1],16)):(c=b.match(/^#(\d+)$/))?String.fromCharCode(~~c[1]):a})},escapeRegExp:function(a){return h(a,/([.*+?^=!:${}()|[\]\/\\])/g,"\\$1")},insert:function(a,b,c){var d=o.chars(a);return d.splice(~~b,0,""+c),d.join("")},include:function(a,b){return!!~(""+a).indexOf(b)},join:function(){var a=g.call(arguments);return a.join(a.shift())},lines:function(a){return(""+a).split("\n")},reverse:function(a){return o.chars(a).reverse().join("")},splice:function(a,b,c,d){var e=o.chars(a);return e.splice(~~b,~~c,d),e.join("")},startsWith:function(a,b){return a+="",b+="",a.length>=b.length&&a.slice(0,b.length)===b},endsWith:function(a,b){return a+="",b+="",a.length>=b.length&&a.slice(a.length-b.length)===b},succ:function(a){a+="";var b=o.chars(a);return b.splice(a.length-1,1,String.fromCharCode(a.charCodeAt(a.length-1)+1)),b.join("")},titleize:function(a){return h(a,/(?:^|\s)\S/g,function(a){return a.toUpperCase()})},camelize:function(a){return o.trim(a).replace(/[-_\s]+(.)?/g,function(a,b){return b.toUpperCase()})},underscored:function(a){return o.trim(a).replace(/([a-z\d])([A-Z]+)/g,"$1_$2").replace(/[-\s]+/g,"_").toLowerCase()},dasherize:function(a){return o.trim(a).replace(/([A-Z])/g,"-$1").replace(/[-_\s]+/g,"-").toLowerCase()},classify:function(a){return o.titleize(h(a,/_/g," ")).replace(/\s/g,"")},humanize:function(a){return o.capitalize(o.underscored(a).replace(/_id$/,"").replace(/_/g," "))},trim:function(a,c){return a+="",!c&&b?b.call(a):(c=i(c),a.replace(new RegExp("^"+c+"+|"+c+"+$","g"),""))},ltrim:function(a,b){return a+="",!b&&d?d.call(a):(b=i(b),a.replace(new RegExp("^"+b+"+"),""))},rtrim:function(a,b){return a+="",!b&&c?c.call(a):(b=i(b),a.replace(new RegExp(b+"+$"),""))},truncate:function(a,b,c){return a+="",c=c||"...",b=~~b,a.length>b?a.slice(0,b)+c:a},prune:function(a,b,c){a+="",b=~~b,c=c!=null?""+c:"...";var d,e,f=a.replace(/\W/g,function(a){return a.toUpperCase()!==a.toLowerCase()?"A":" "});return e=f.charAt(b),d=f.slice(0,b),e&&e.match(/\S/)&&(d=d.replace(/\s\S+$/,"")),d=o.rtrim(d),(d+c).length>a.length?a:a.slice(0,d.length)+c},words:function(a,b){return o.trim(a,b).split(b||/\s+/)},pad:function(a,b,c,d){a+="";var e=0;b=~~b,c?c.length>1&&(c=c.charAt(0)):c=" ";switch(d){case"right":return e=b-a.length,a+f(c,e);case"both":return e=b-a.length,f(c,Math.ceil(e/2))+a+f(c,Math.floor(e/2));default:return e=b-a.length,f(c,e)+a}},lpad:function(a,b,c){return o.pad(a,b,c)},rpad:function(a,b,c){return o.pad(a,b,c,"right")},lrpad:function(a,b,c){return o.pad(a,b,c,"both")},sprintf:n,vsprintf:function(a,b){return b.unshift(a),n.apply(null,b)},toNumber:function(a,b){a+="";var c=e(e(a).toFixed(~~b));return c===0&&!a.match(/^0+$/)?Number.NaN:c},strRight:function(a,b){a+="",b=b!=null?""+b:b;var c=b?a.indexOf(b):-1;return~c?a.slice(c+b.length,a.length):a},strRightBack:function(a,b){a+="",b=b!=null?""+b:b;var c=b?a.lastIndexOf(b):-1;return~c?a.slice(c+b.length,a.length):a},strLeft:function(a,b){a+="",b=b!=null?""+b:b;var c=b?a.indexOf(b):-1;return~c?a.slice(0,c):a},strLeftBack:function(a,b){a+="",b=b!=null?""+b:b;var c=a.lastIndexOf(b);return~c?a.slice(0,c):a},toSentence:function(a,b,c){b||(b=", "),c||(c=" and ");var d=a.length,e="";for(var f=0;f<d;f++)e+=a[f],f===d-2?e+=c:f<d-1&&(e+=b);return e},slugify:function(a){var b="ąàáäâãćęèéëêìíïîłńòóöôõùúüûñçżź",c="aaaaaaceeeeeiiiilnooooouuuunczz",d=new RegExp(i(b),"g");return a=(""+a).toLowerCase(),a=a.replace(d,function(a){var d=b.indexOf(a);return c.charAt(d)||"-"}),o.dasherize(a.replace(/[^\w\s-]/g,""))},surround:function(a,b){return[b,a,b].join("")},quote:function(a){return o.surround(a,'"')},exports:function(){var a={};for(var b in this){if(!this.hasOwnProperty(b)||b.match(/^(?:include|contains|reverse)$/))continue;a[b]=this[b]}return a},repeat:function(a,b,c){b=~~b;if(c==null)return f(a+"",b);for(var d=[];b>0;d[--b]=a);return d.join(c)},levenshtein:j};o.strip=o.trim,o.lstrip=o.ltrim,o.rstrip=o.rtrim,o.center=o.lrpad,o.rjust=o.lpad,o.ljust=o.rpad,o.contains=o.include,o.q=o.quote,typeof exports!="undefined"?(typeof module!="undefined"&&module.exports&&(module.exports=o),exports._s=o):typeof define=="function"&&define.amd?define("underscore.string",[],function(){return o}):(a._=a._||{},a._.string=a._.str=o)}(this);// moment.js
-// version : 1.6.2
+!function(e,t){"use strict";var n=t.prototype.trim,r=t.prototype.trimRight,i=t.prototype.trimLeft,s=function(e){return e*1||0},o=function(e,t){if(t<1)return"";var n="";while(t>0)t&1&&(n+=e),t>>=1,e+=e;return n},u=[].slice,a=function(e){return e!=null?"["+p.escapeRegExp(e)+"]":"\\s"},f={lt:"<",gt:">",quot:'"',apos:"'",amp:"&"},l={};for(var c in f)l[f[c]]=c;var h=function(){function e(e){return Object.prototype.toString.call(e).slice(8,-1).toLowerCase()}var n=o,r=function(){return r.cache.hasOwnProperty(arguments[0])||(r.cache[arguments[0]]=r.parse(arguments[0])),r.format.call(null,r.cache[arguments[0]],arguments)};return r.format=function(r,i){var s=1,o=r.length,u="",a,f=[],l,c,p,d,v,m;for(l=0;l<o;l++){u=e(r[l]);if(u==="string")f.push(r[l]);else if(u==="array"){p=r[l];if(p[2]){a=i[s];for(c=0;c<p[2].length;c++){if(!a.hasOwnProperty(p[2][c]))throw new Error(h('[_.sprintf] property "%s" does not exist',p[2][c]));a=a[p[2][c]]}}else p[1]?a=i[p[1]]:a=i[s++];if(/[^s]/.test(p[8])&&e(a)!="number")throw new Error(h("[_.sprintf] expecting number but found %s",e(a)));switch(p[8]){case"b":a=a.toString(2);break;case"c":a=t.fromCharCode(a);break;case"d":a=parseInt(a,10);break;case"e":a=p[7]?a.toExponential(p[7]):a.toExponential();break;case"f":a=p[7]?parseFloat(a).toFixed(p[7]):parseFloat(a);break;case"o":a=a.toString(8);break;case"s":a=(a=t(a))&&p[7]?a.substring(0,p[7]):a;break;case"u":a=Math.abs(a);break;case"x":a=a.toString(16);break;case"X":a=a.toString(16).toUpperCase()}a=/[def]/.test(p[8])&&p[3]&&a>=0?"+"+a:a,v=p[4]?p[4]=="0"?"0":p[4].charAt(1):" ",m=p[6]-t(a).length,d=p[6]?n(v,m):"",f.push(p[5]?a+d:d+a)}}return f.join("")},r.cache={},r.parse=function(e){var t=e,n=[],r=[],i=0;while(t){if((n=/^[^\x25]+/.exec(t))!==null)r.push(n[0]);else if((n=/^\x25{2}/.exec(t))!==null)r.push("%");else{if((n=/^\x25(?:([1-9]\d*)\$|\(([^\)]+)\))?(\+)?(0|'[^$])?(-)?(\d+)?(?:\.(\d+))?([b-fosuxX])/.exec(t))===null)throw new Error("[_.sprintf] huh?");if(n[2]){i|=1;var s=[],o=n[2],u=[];if((u=/^([a-z_][a-z_\d]*)/i.exec(o))===null)throw new Error("[_.sprintf] huh?");s.push(u[1]);while((o=o.substring(u[0].length))!=="")if((u=/^\.([a-z_][a-z_\d]*)/i.exec(o))!==null)s.push(u[1]);else{if((u=/^\[(\d+)\]/.exec(o))===null)throw new Error("[_.sprintf] huh?");s.push(u[1])}n[2]=s}else i|=2;if(i===3)throw new Error("[_.sprintf] mixing positional and named placeholders is not (yet) supported");r.push(n)}t=t.substring(n[0].length)}return r},r}(),p={VERSION:"2.2.0rc",isBlank:function(e){return e==null&&(e=""),/^\s*$/.test(e)},stripTags:function(e){return e==null?"":t(e).replace(/<\/?[^>]+>/g,"")},capitalize:function(e){return e=e==null?"":t(e),e.charAt(0).toUpperCase()+e.slice(1)},chop:function(e,n){return e==null?[]:(e=t(e),n=~~n,n>0?e.match(new RegExp(".{1,"+n+"}","g")):[e])},clean:function(e){return p.strip(e).replace(/\s+/g," ")},count:function(e,n){return e==null||n==null?0:t(e).split(n).length-1},chars:function(e){return e==null?[]:t(e).split("")},swapCase:function(e){return e==null?"":t(e).replace(/\S/g,function(e){return e===e.toUpperCase()?e.toLowerCase():e.toUpperCase()})},escapeHTML:function(e){return e==null?"":t(e).replace(/[&<>"']/g,function(e){return"&"+l[e]+";"})},unescapeHTML:function(e){return e==null?"":t(e).replace(/\&([^;]+);/g,function(e,n){var r;return n in f?f[n]:(r=n.match(/^#x([\da-fA-F]+)$/))?t.fromCharCode(parseInt(r[1],16)):(r=n.match(/^#(\d+)$/))?t.fromCharCode(~~r[1]):e})},escapeRegExp:function(e){return e==null?"":t(e).replace(/([.*+?^=!:${}()|[\]\/\\])/g,"\\$1")},splice:function(e,t,n,r){var i=p.chars(e);return i.splice(~~t,~~n,r),i.join("")},insert:function(e,t,n){return p.splice(e,t,0,n)},include:function(e,n){return n===""?!0:e==null?!1:t(e).indexOf(n)!==-1},join:function(){var e=u.call(arguments),t=e.shift();return t==null&&(t=""),e.join(t)},lines:function(e){return e==null?[]:t(e).split("\n")},reverse:function(e){return p.chars(e).reverse().join("")},startsWith:function(e,n){return n===""?!0:e==null||n==null?!1:(e=t(e),n=t(n),e.length>=n.length&&e.slice(0,n.length)===n)},endsWith:function(e,n){return n===""?!0:e==null||n==null?!1:(e=t(e),n=t(n),e.length>=n.length&&e.slice(e.length-n.length)===n)},succ:function(e){return e==null?"":(e=t(e),e.slice(0,-1)+t.fromCharCode(e.charCodeAt(e.length-1)+1))},titleize:function(e){return e==null?"":t(e).replace(/(?:^|\s)\S/g,function(e){return e.toUpperCase()})},camelize:function(e){return p.trim(e).replace(/[-_\s]+(.)?/g,function(e,t){return t.toUpperCase()})},underscored:function(e){return p.trim(e).replace(/([a-z\d])([A-Z]+)/g,"$1_$2").replace(/[-\s]+/g,"_").toLowerCase()},dasherize:function(e){return p.trim(e).replace(/([A-Z])/g,"-$1").replace(/[-_\s]+/g,"-").toLowerCase()},classify:function(e){return p.titleize(t(e).replace(/_/g," ")).replace(/\s/g,"")},humanize:function(e){return p.capitalize(p.underscored(e).replace(/_id$/,"").replace(/_/g," "))},trim:function(e,r){return e==null?"":!r&&n?n.call(e):(r=a(r),t(e).replace(new RegExp("^"+r+"+|"+r+"+$","g"),""))},ltrim:function(e,n){return e==null?"":!n&&i?i.call(e):(n=a(n),t(e).replace(new RegExp("^"+n+"+"),""))},rtrim:function(e,n){return e==null?"":!n&&r?r.call(e):(n=a(n),t(e).replace(new RegExp(n+"+$"),""))},truncate:function(e,n,r){return e==null?"":(e=t(e),r=r||"...",n=~~n,e.length>n?e.slice(0,n)+r:e)},prune:function(e,n,r){if(e==null)return"";e=t(e),n=~~n,r=r!=null?t(r):"...";if(e.length<=n)return e;var i=function(e){return e.toUpperCase()!==e.toLowerCase()?"A":" "},s=e.slice(0,n+1).replace(/.(?=\W*\w*$)/g,i);return s.slice(s.length-2).match(/\w\w/)?s=s.replace(/\s*\S+$/,""):s=p.rtrim(s.slice(0,s.length-1)),(s+r).length>e.length?e:e.slice(0,s.length)+r},words:function(e,t){return e==null||e==""?"":p.trim(e,t).split(t||/\s+/)},pad:function(e,n,r,i){e=e==null?"":t(e),n=~~n;var s=0;r?r.length>1&&(r=r.charAt(0)):r=" ";switch(i){case"right":return s=n-e.length,e+o(r,s);case"both":return s=n-e.length,o(r,Math.ceil(s/2))+e+o(r,Math.floor(s/2));default:return s=n-e.length,o(r,s)+e}},lpad:function(e,t,n){return p.pad(e,t,n)},rpad:function(e,t,n){return p.pad(e,t,n,"right")},lrpad:function(e,t,n){return p.pad(e,t,n,"both")},sprintf:h,vsprintf:function(e,t){return t.unshift(e),h.apply(null,t)},toNumber:function(e,n){if(e==null||e=="")return 0;e=t(e);var r=s(s(e).toFixed(~~n));return r===0&&!e.match(/^0+$/)?Number.NaN:r},numberFormat:function(e,t,n,r){if(isNaN(e)||e==null)return"";e=e.toFixed(~~t),r=r||",";var i=e.split("."),s=i[0],o=i[1]?(n||".")+i[1]:"";return s.replace(/(\d)(?=(?:\d{3})+$)/g,"$1"+r)+o},strRight:function(e,n){if(e==null)return"";e=t(e),n=n!=null?t(n):n;var r=n?e.indexOf(n):-1;return~r?e.slice(r+n.length,e.length):e},strRightBack:function(e,n){if(e==null)return"";e=t(e),n=n!=null?t(n):n;var r=n?e.lastIndexOf(n):-1;return~r?e.slice(r+n.length,e.length):e},strLeft:function(e,n){if(e==null)return"";e=t(e),n=n!=null?t(n):n;var r=n?e.indexOf(n):-1;return~r?e.slice(0,r):e},strLeftBack:function(e,t){if(e==null)return"";e+="",t=t!=null?""+t:t;var n=e.lastIndexOf(t);return~n?e.slice(0,n):e},toSentence:function(e,t,n){t=t||", ",n=n||" and ";var r=e.slice(),i=r.pop();return r.length?r.join(t)+n+i:i},slugify:function(e){if(e==null)return"";var n="ąàáäâãćęèéëêìíïîłńòóöôõùúüûñçżź",r="aaaaaaceeeeeiiiilnooooouuuunczz",i=new RegExp(a(n),"g");return e=t(e).toLowerCase().replace(i,function(e){var t=n.indexOf(e);return r.charAt(t)||"-"}),p.dasherize(e.replace(/[^\w\s-]/g,""))},surround:function(e,t){return[t,e,t].join("")},quote:function(e){return p.surround(e,'"')},exports:function(){var e={};for(var t in this){if(!this.hasOwnProperty(t)||t.match(/^(?:include|contains|reverse)$/))continue;e[t]=this[t]}return e},repeat:function(e,n,r){if(e==null)return"";n=~~n;if(r==null)return o(t(e),n);for(var i=[];n>0;i[--n]=e);return i.join(r)},levenshtein:function(e,n){if(e==null&&n==null)return 0;if(e==null)return t(n).length;if(n==null)return t(e).length;e=t(e),n=t(n);var r=[],i,s;for(var o=0;o<=n.length;o++)for(var u=0;u<=e.length;u++)o&&u?e.charAt(u-1)===n.charAt(o-1)?s=i:s=Math.min(r[u],r[u-1],i)+1:s=o+u,i=r[u],r[u]=s;return r.pop()}};p.strip=p.trim,p.lstrip=p.ltrim,p.rstrip=p.rtrim,p.center=p.lrpad,p.rjust=p.lpad,p.ljust=p.rpad,p.contains=p.include,p.q=p.quote,typeof exports!="undefined"?(typeof module!="undefined"&&module.exports&&(module.exports=p),exports._s=p):typeof define=="function"&&define.amd?define("underscore.string",[],function(){return p}):(e._=e._||{},e._.string=e._.str=p)}(this,String);// moment.js
+// version : 1.7.0
 // author : Tim Wood
 // license : MIT
 // momentjs.com
 
 (function (Date, undefined) {
 
+    /************************************
+        Constants
+    ************************************/
+
     var moment,
-        VERSION = "1.6.2",
+        VERSION = "1.7.0",
         round = Math.round, i,
         // internal storage for language config files
         languages = {},
         currentLanguage = 'en',
 
         // check for nodeJS
-        hasModule = (typeof module !== 'undefined'),
+        hasModule = (typeof module !== 'undefined' && module.exports),
 
-        // parameters to check for on the lang config
-        langConfigProperties = 'months|monthsShort|monthsParse|weekdays|weekdaysShort|longDateFormat|calendar|relativeTime|ordinal|meridiem'.split('|'),
+        // Parameters to check for on the lang config.  This list of properties
+        // will be inherited from English if not provided in a language
+        // definition.  monthsParse is also a lang config property, but it
+        // cannot be inherited and as such cannot be enumerated here.
+        langConfigProperties = 'months|monthsShort|weekdays|weekdaysShort|weekdaysMin|longDateFormat|calendar|relativeTime|ordinal|meridiem'.split('|'),
 
         // ASP.NET json date format regex
         aspNetJsonRegex = /^\/?Date\((\-?\d+)/i,
 
         // format tokens
-        formattingTokens = /(\[[^\[]*\])|(\\)?(Mo|MM?M?M?|Do|DDDo|DD?D?D?|dddd?|do?|w[o|w]?|YYYY|YY|a|A|hh?|HH?|mm?|ss?|SS?S?|zz?|ZZ?|LT|LL?L?L?)/g,
+        formattingTokens = /(\[[^\[]*\])|(\\)?(Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|YYYY|YY|a|A|hh?|HH?|mm?|ss?|SS?S?|zz?|ZZ?)/g,
+        localFormattingTokens = /(LT|LL?L?L?)/g,
+        formattingRemoveEscapes = /(^\[)|(\\)|\]$/g,
 
         // parsing tokens
         parseMultipleFormatChunker = /([0-9a-zA-Z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)/gi,
@@ -254,7 +263,7 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
         parseTokenOneOrTwoDigits = /\d\d?/, // 0 - 99
         parseTokenOneToThreeDigits = /\d{1,3}/, // 0 - 999
         parseTokenThreeDigits = /\d{3}/, // 000 - 999
-        parseTokenFourDigits = /\d{4}/, // 0000 - 9999
+        parseTokenFourDigits = /\d{1,4}/, // 0 - 9999
         parseTokenWord = /[0-9a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+/i, // any word characters or numbers
         parseTokenTimezone = /Z|[\+\-]\d\d:?\d\d/i, // +00:00 -00:00 +0000 -0000 or Z
         parseTokenT = /T/i, // T (ISO seperator)
@@ -285,20 +294,77 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
             'Days' : 864e5,
             'Months' : 2592e6,
             'Years' : 31536e6
-        };
+        },
+
+        // format function strings
+        formatFunctions = {},
+
+        /*
+         * moment.fn.format uses new Function() to create an inlined formatting function.
+         * Results are a 3x speed boost
+         * http://jsperf.com/momentjs-cached-format-functions
+         *
+         * These strings are appended into a function using replaceFormatTokens and makeFormatFunction
+         */
+        formatFunctionStrings = {
+            // a = placeholder
+            // b = placeholder
+            // t = the current moment being formatted
+            // v = getValueAtKey function
+            // o = language.ordinal function
+            // p = leftZeroFill function
+            // m = language.meridiem value or function
+            M    : '(a=t.month()+1)',
+            MMM  : 'v("monthsShort",t.month())',
+            MMMM : 'v("months",t.month())',
+            D    : '(a=t.date())',
+            DDD  : '(a=new Date(t.year(),t.month(),t.date()),b=new Date(t.year(),0,1),a=~~(((a-b)/864e5)+1.5))',
+            d    : '(a=t.day())',
+            dd   : 'v("weekdaysMin",t.day())',
+            ddd  : 'v("weekdaysShort",t.day())',
+            dddd : 'v("weekdays",t.day())',
+            w    : '(a=new Date(t.year(),t.month(),t.date()-t.day()+5),b=new Date(a.getFullYear(),0,4),a=~~((a-b)/864e5/7+1.5))',
+            YY   : 'p(t.year()%100,2)',
+            YYYY : 'p(t.year(),4)',
+            a    : 'm(t.hours(),t.minutes(),!0)',
+            A    : 'm(t.hours(),t.minutes(),!1)',
+            H    : 't.hours()',
+            h    : 't.hours()%12||12',
+            m    : 't.minutes()',
+            s    : 't.seconds()',
+            S    : '~~(t.milliseconds()/100)',
+            SS   : 'p(~~(t.milliseconds()/10),2)',
+            SSS  : 'p(t.milliseconds(),3)',
+            Z    : '((a=-t.zone())<0?((a=-a),"-"):"+")+p(~~(a/60),2)+":"+p(~~a%60,2)',
+            ZZ   : '((a=-t.zone())<0?((a=-a),"-"):"+")+p(~~(10*a/6),4)'
+        },
+
+        ordinalizeTokens = 'DDD w M D d'.split(' '),
+        paddedTokens = 'M D H h m s w'.split(' ');
+
+    while (ordinalizeTokens.length) {
+        i = ordinalizeTokens.pop();
+        formatFunctionStrings[i + 'o'] = formatFunctionStrings[i] + '+o(a)';
+    }
+    while (paddedTokens.length) {
+        i = paddedTokens.pop();
+        formatFunctionStrings[i + i] = 'p(' + formatFunctionStrings[i] + ',2)';
+    }
+    formatFunctionStrings.DDDD = 'p(' + formatFunctionStrings.DDD + ',3)';
+
+
+    /************************************
+        Constructors
+    ************************************/
+
 
     // Moment prototype object
-    function Moment(date, isUTC) {
+    function Moment(date, isUTC, lang) {
         this._d = date;
         this._isUTC = !!isUTC;
-    }
-
-    function absRound(number) {
-        if (number < 0) {
-            return Math.ceil(number);
-        } else {
-            return Math.floor(number);
-        }
+        this._a = date._a || null;
+        date._a = null;
+        this._lang = lang || false;
     }
 
     // Duration Constructor
@@ -351,6 +417,22 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
         years += absRound(months / 12);
 
         data.years = years;
+
+        this._lang = false;
+    }
+
+
+    /************************************
+        Helpers
+    ************************************/
+
+
+    function absRound(number) {
+        if (number < 0) {
+            return Math.ceil(number);
+        } else {
+            return Math.floor(number);
+        }
     }
 
     // left zero fill a number
@@ -389,140 +471,151 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
         return Object.prototype.toString.call(input) === '[object Array]';
     }
 
+    // compare two arrays, return the number of differences
+    function compareArrays(array1, array2) {
+        var len = Math.min(array1.length, array2.length),
+            lengthDiff = Math.abs(array1.length - array2.length),
+            diffs = 0,
+            i;
+        for (i = 0; i < len; i++) {
+            if (~~array1[i] !== ~~array2[i]) {
+                diffs++;
+            }
+        }
+        return diffs + lengthDiff;
+    }
+
     // convert an array to a date.
     // the array should mirror the parameters below
     // note: all values past the year are optional and will default to the lowest possible value.
     // [year, month, day , hour, minute, second, millisecond]
-    function dateFromArray(input) {
-        return new Date(input[0], input[1] || 0, input[2] || 1, input[3] || 0, input[4] || 0, input[5] || 0, input[6] || 0);
+    function dateFromArray(input, asUTC) {
+        var i, date;
+        for (i = 1; i < 7; i++) {
+            input[i] = (input[i] == null) ? (i === 2 ? 1 : 0) : input[i];
+        }
+        // we store whether we used utc or not in the input array
+        input[7] = asUTC;
+        date = new Date(0);
+        if (asUTC) {
+            date.setUTCFullYear(input[0], input[1], input[2]);
+            date.setUTCHours(input[3], input[4], input[5], input[6]);
+        } else {
+            date.setFullYear(input[0], input[1], input[2]);
+            date.setHours(input[3], input[4], input[5], input[6]);
+        }
+        date._a = input;
+        return date;
+    }
+
+    // Loads a language definition into the `languages` cache.  The function
+    // takes a key and optionally values.  If not in the browser and no values
+    // are provided, it will load the language file module.  As a convenience,
+    // this function also returns the language values.
+    function loadLang(key, values) {
+        var i, m,
+            parse = [];
+
+        if (!values && hasModule) {
+            values = require('./lang/' + key);
+        }
+        
+        for (i = 0; i < langConfigProperties.length; i++) {
+            // If a language definition does not provide a value, inherit
+            // from English
+            values[langConfigProperties[i]] = values[langConfigProperties[i]] ||
+              languages.en[langConfigProperties[i]];
+        }
+
+        for (i = 0; i < 12; i++) {
+            m = moment([2000, i]);
+            parse[i] = new RegExp('^' + (values.months[i] || values.months(m, '')) + 
+                '|^' + (values.monthsShort[i] || values.monthsShort(m, '')).replace('.', ''), 'i');
+        }
+        values.monthsParse = values.monthsParse || parse;
+
+        languages[key] = values;
+        
+        return values;
+    }
+
+    // Determines which language definition to use and returns it.
+    //
+    // With no parameters, it will return the global language.  If you
+    // pass in a language key, such as 'en', it will return the
+    // definition for 'en', so long as 'en' has already been loaded using
+    // moment.lang.  If you pass in a moment or duration instance, it
+    // will decide the language based on that, or default to the global
+    // language.
+    function getLangDefinition(m) {
+        var langKey = (typeof m === 'string') && m ||
+                      m && m._lang ||
+                      null;
+
+        return langKey ? (languages[langKey] || loadLang(langKey)) : moment;
+    }
+
+
+    /************************************
+        Formatting
+    ************************************/
+
+
+    // helper for building inline formatting functions
+    function replaceFormatTokens(token) {
+        return formatFunctionStrings[token] ? 
+            ("'+(" + formatFunctionStrings[token] + ")+'") :
+            token.replace(formattingRemoveEscapes, "").replace(/\\?'/g, "\\'");
+    }
+
+    // helper for recursing long date formatting tokens
+    function replaceLongDateFormatTokens(input) {
+        return getLangDefinition().longDateFormat[input] || input;
+    }
+
+    function makeFormatFunction(format) {
+        var output = "var a,b;return '" +
+            format.replace(formattingTokens, replaceFormatTokens) + "';",
+            Fn = Function; // get around jshint
+        // t = the current moment being formatted
+        // v = getValueAtKey function
+        // o = language.ordinal function
+        // p = leftZeroFill function
+        // m = language.meridiem value or function
+        return new Fn('t', 'v', 'o', 'p', 'm', output);
+    }
+
+    function makeOrGetFormatFunction(format) {
+        if (!formatFunctions[format]) {
+            formatFunctions[format] = makeFormatFunction(format);
+        }
+        return formatFunctions[format];
     }
 
     // format date using native date object
-    function formatMoment(m, inputString) {
-        var currentMonth = m.month(),
-            currentDate = m.date(),
-            currentYear = m.year(),
-            currentDay = m.day(),
-            currentHours = m.hours(),
-            currentMinutes = m.minutes(),
-            currentSeconds = m.seconds(),
-            currentMilliseconds = m.milliseconds(),
-            currentZone = -m.zone(),
-            ordinal = moment.ordinal,
-            meridiem = moment.meridiem;
-        // check if the character is a format
-        // return formatted string or non string.
-        //
-        // uses switch/case instead of an object of named functions (like http://phpjs.org/functions/date:380)
-        // for minification and performance
-        // see http://jsperf.com/object-of-functions-vs-switch for performance comparison
-        function replaceFunction(input) {
-            // create a couple variables to be used later inside one of the cases.
-            var a, b;
-            switch (input) {
-                // MONTH
-            case 'M' :
-                return currentMonth + 1;
-            case 'Mo' :
-                return (currentMonth + 1) + ordinal(currentMonth + 1);
-            case 'MM' :
-                return leftZeroFill(currentMonth + 1, 2);
-            case 'MMM' :
-                return moment.monthsShort[currentMonth];
-            case 'MMMM' :
-                return moment.months[currentMonth];
-            // DAY OF MONTH
-            case 'D' :
-                return currentDate;
-            case 'Do' :
-                return currentDate + ordinal(currentDate);
-            case 'DD' :
-                return leftZeroFill(currentDate, 2);
-            // DAY OF YEAR
-            case 'DDD' :
-                a = new Date(currentYear, currentMonth, currentDate);
-                b = new Date(currentYear, 0, 1);
-                return ~~ (((a - b) / 864e5) + 1.5);
-            case 'DDDo' :
-                a = replaceFunction('DDD');
-                return a + ordinal(a);
-            case 'DDDD' :
-                return leftZeroFill(replaceFunction('DDD'), 3);
-            // WEEKDAY
-            case 'd' :
-                return currentDay;
-            case 'do' :
-                return currentDay + ordinal(currentDay);
-            case 'ddd' :
-                return moment.weekdaysShort[currentDay];
-            case 'dddd' :
-                return moment.weekdays[currentDay];
-            // WEEK OF YEAR
-            case 'w' :
-                a = new Date(currentYear, currentMonth, currentDate - currentDay + 5);
-                b = new Date(a.getFullYear(), 0, 4);
-                return ~~ ((a - b) / 864e5 / 7 + 1.5);
-            case 'wo' :
-                a = replaceFunction('w');
-                return a + ordinal(a);
-            case 'ww' :
-                return leftZeroFill(replaceFunction('w'), 2);
-            // YEAR
-            case 'YY' :
-                return leftZeroFill(currentYear % 100, 2);
-            case 'YYYY' :
-                return currentYear;
-            // AM / PM
-            case 'a' :
-                return meridiem ? meridiem(currentHours, currentMinutes, false) : (currentHours > 11 ? 'pm' : 'am');
-            case 'A' :
-                return meridiem ? meridiem(currentHours, currentMinutes, true) : (currentHours > 11 ? 'PM' : 'AM');
-            // 24 HOUR
-            case 'H' :
-                return currentHours;
-            case 'HH' :
-                return leftZeroFill(currentHours, 2);
-            // 12 HOUR
-            case 'h' :
-                return currentHours % 12 || 12;
-            case 'hh' :
-                return leftZeroFill(currentHours % 12 || 12, 2);
-            // MINUTE
-            case 'm' :
-                return currentMinutes;
-            case 'mm' :
-                return leftZeroFill(currentMinutes, 2);
-            // SECOND
-            case 's' :
-                return currentSeconds;
-            case 'ss' :
-                return leftZeroFill(currentSeconds, 2);
-            // MILLISECONDS
-            case 'S' :
-                return ~~ (currentMilliseconds / 100);
-            case 'SS' :
-                return leftZeroFill(~~(currentMilliseconds / 10), 2);
-            case 'SSS' :
-                return leftZeroFill(currentMilliseconds, 3);
-            // TIMEZONE
-            case 'Z' :
-                return (currentZone < 0 ? '-' : '+') + leftZeroFill(~~(Math.abs(currentZone) / 60), 2) + ':' + leftZeroFill(~~(Math.abs(currentZone) % 60), 2);
-            case 'ZZ' :
-                return (currentZone < 0 ? '-' : '+') + leftZeroFill(~~(10 * Math.abs(currentZone) / 6), 4);
-            // LONG DATES
-            case 'L' :
-            case 'LL' :
-            case 'LLL' :
-            case 'LLLL' :
-            case 'LT' :
-                return formatMoment(m, moment.longDateFormat[input]);
-            // DEFAULT
-            default :
-                return input.replace(/(^\[)|(\\)|\]$/g, "");
-            }
+    function formatMoment(m, format) {
+        var lang = getLangDefinition(m);
+
+        function getValueFromArray(key, index) {
+            return lang[key].call ? lang[key](m, format) : lang[key][index];
         }
-        return inputString.replace(formattingTokens, replaceFunction);
+
+        while (localFormattingTokens.test(format)) {
+            format = format.replace(localFormattingTokens, replaceLongDateFormatTokens);
+        }
+
+        if (!formatFunctions[format]) {
+            formatFunctions[format] = makeFormatFunction(format);
+        }
+
+        return formatFunctions[format](m, getValueFromArray, lang.ordinal, leftZeroFill, lang.meridiem);
     }
+
+
+    /************************************
+        Parsing
+    ************************************/
+
 
     // get the regex to find the next token
     function getParseRegexForToken(token) {
@@ -538,6 +631,7 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
             return parseTokenOneToThreeDigits;
         case 'MMM':
         case 'MMMM':
+        case 'dd':
         case 'ddd':
         case 'dddd':
         case 'a':
@@ -550,7 +644,6 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
             return parseTokenT;
         case 'MM':
         case 'DD':
-        case 'dd':
         case 'YY':
         case 'HH':
         case 'hh':
@@ -582,7 +675,7 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
         case 'MMM' : // fall through to MMMM
         case 'MMMM' :
             for (a = 0; a < 12; a++) {
-                if (moment.monthsParse[a].test(input)) {
+                if (getLangDefinition().monthsParse[a].test(input)) {
                     datePartArray[1] = a;
                     break;
                 }
@@ -593,7 +686,9 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
         case 'DD' : // fall through to DDDD
         case 'DDD' : // fall through to DDDD
         case 'DDDD' :
-            datePartArray[2] = ~~input;
+            if (input != null) {
+                datePartArray[2] = ~~input;
+            }
             break;
         // YEAR
         case 'YY' :
@@ -678,21 +773,7 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
         datePartArray[3] += config.tzh;
         datePartArray[4] += config.tzm;
         // return
-        return config.isUTC ? new Date(Date.UTC.apply({}, datePartArray)) : dateFromArray(datePartArray);
-    }
-
-    // compare two arrays, return the number of differences
-    function compareArrays(array1, array2) {
-        var len = Math.min(array1.length, array2.length),
-            lengthDiff = Math.abs(array1.length - array2.length),
-            diffs = 0,
-            i;
-        for (i = 0; i < len; i++) {
-            if (~~array1[i] !== ~~array2[i]) {
-                diffs++;
-            }
-        }
-        return diffs + lengthDiff;
+        return dateFromArray(datePartArray, config.isUTC);
     }
 
     // date from string and array of format strings
@@ -734,15 +815,21 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
         return new Date(string);
     }
 
+
+    /************************************
+        Relative Time
+    ************************************/
+
+
     // helper function for moment.fn.from, moment.fn.fromNow, and moment.duration.fn.humanize
-    function substituteTimeAgo(string, number, withoutSuffix, isFuture) {
-        var rt = moment.relativeTime[string];
+    function substituteTimeAgo(string, number, withoutSuffix, isFuture, lang) {
+        var rt = lang.relativeTime[string];
         return (typeof rt === 'function') ?
             rt(number || 1, !!withoutSuffix, string, isFuture) :
             rt.replace(/%d/i, number || 1);
     }
 
-    function relativeTime(milliseconds, withoutSuffix) {
+    function relativeTime(milliseconds, withoutSuffix, lang) {
         var seconds = round(Math.abs(milliseconds) / 1000),
             minutes = round(seconds / 60),
             hours = round(minutes / 60),
@@ -760,20 +847,25 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
                 years === 1 && ['y'] || ['yy', years];
         args[2] = withoutSuffix;
         args[3] = milliseconds > 0;
+        args[4] = lang;
         return substituteTimeAgo.apply({}, args);
     }
+
+
+    /************************************
+        Top Level Functions
+    ************************************/
+
 
     moment = function (input, format) {
         if (input === null || input === '') {
             return null;
         }
         var date,
-            matched,
-            isUTC;
+            matched;
         // parse Moment object
         if (moment.isMoment(input)) {
-            date = new Date(+input._d);
-            isUTC = input._isUTC;
+            return new Moment(new Date(+input._d), input._isUTC, input._lang);
         // parse string and format
         } else if (format) {
             if (isArray(format)) {
@@ -791,17 +883,23 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
                 typeof input === 'string' ? makeDateFromString(input) :
                 new Date(input);
         }
-        return new Moment(date, isUTC);
+
+        return new Moment(date);
     };
 
     // creating with utc
     moment.utc = function (input, format) {
         if (isArray(input)) {
-            return new Moment(new Date(Date.UTC.apply({}, input)), true);
+            return new Moment(dateFromArray(input, true), true);
         }
-        return (format && input) ?
-            moment(input + ' +0000', format + ' Z').utc() :
-            moment(input && !parseTokenTimezone.exec(input) ? input + '+0000' : input).utc();
+        // if we don't have a timezone, we need to add one to trigger parsing into utc
+        if (typeof input === 'string' && !parseTokenTimezone.exec(input)) {
+            input += ' +0000';
+            if (format) {
+                format += ' Z';
+            }
+        }
+        return moment(input, format).utc();
     };
 
     // creating with unix timestamp (in seconds)
@@ -813,7 +911,8 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
     moment.duration = function (input, key) {
         var isDuration = moment.isDuration(input),
             isNumber = (typeof input === 'number'),
-            duration = (isDuration ? input._data : (isNumber ? {} : input));
+            duration = (isDuration ? input._data : (isNumber ? {} : input)),
+            ret;
 
         if (isNumber) {
             if (key) {
@@ -823,7 +922,13 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
             }
         }
 
-        return new Duration(duration);
+        ret = new Duration(duration);
+
+        if (isDuration) {
+            ret._lang = input._lang;
+        }
+
+        return ret;
     };
 
     // humanizeDuration
@@ -839,40 +944,49 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
     // default format
     moment.defaultFormat = isoFormat;
 
-    // language switching and caching
+    // This function will load languages and then set the global language.  If
+    // no arguments are passed in, it will simply return the current global
+    // language key.
     moment.lang = function (key, values) {
-        var i, req,
-            parse = [];
+        var i;
+
         if (!key) {
             return currentLanguage;
         }
-        if (values) {
-            for (i = 0; i < 12; i++) {
-                parse[i] = new RegExp('^' + values.months[i] + '|^' + values.monthsShort[i].replace('.', ''), 'i');
-            }
-            values.monthsParse = values.monthsParse || parse;
-            languages[key] = values;
+        if (values || !languages[key]) {
+            loadLang(key, values);
         }
         if (languages[key]) {
+            // deprecated, to get the language definition variables, use the
+            // moment.fn.lang method or the getLangDefinition function.
             for (i = 0; i < langConfigProperties.length; i++) {
-                moment[langConfigProperties[i]] = languages[key][langConfigProperties[i]] || 
-                    languages.en[langConfigProperties[i]];
+                moment[langConfigProperties[i]] = languages[key][langConfigProperties[i]];
             }
+            moment.monthsParse = languages[key].monthsParse;
             currentLanguage = key;
-        } else {
-            if (hasModule) {
-                req = require('./lang/' + key);
-                moment.lang(key, req);
-            }
         }
     };
 
-    // set default language
+    // returns language data
+    moment.langData = getLangDefinition;
+
+    // compare moment object
+    moment.isMoment = function (obj) {
+        return obj instanceof Moment;
+    };
+
+    // for typechecking Duration objects
+    moment.isDuration = function (obj) {
+        return obj instanceof Duration;
+    };
+
+    // Set default language, other languages will inherit from English.
     moment.lang('en', {
         months : "January_February_March_April_May_June_July_August_September_October_November_December".split("_"),
         monthsShort : "Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec".split("_"),
         weekdays : "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),
         weekdaysShort : "Sun_Mon_Tue_Wed_Thu_Fri_Sat".split("_"),
+        weekdaysMin : "Su_Mo_Tu_We_Th_Fr_Sa".split("_"),
         longDateFormat : {
             LT : "h:mm A",
             L : "MM/DD/YYYY",
@@ -880,7 +994,13 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
             LLL : "MMMM D YYYY LT",
             LLLL : "dddd, MMMM D YYYY LT"
         },
-        meridiem : false,
+        meridiem : function (hours, minutes, isLower) {
+            if (hours > 11) {
+                return isLower ? 'pm' : 'PM';
+            } else {
+                return isLower ? 'am' : 'AM';
+            }
+        },
         calendar : {
             sameDay : '[Today at] LT',
             nextDay : '[Tomorrow at] LT',
@@ -913,17 +1033,12 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
         }
     });
 
-    // compare moment object
-    moment.isMoment = function (obj) {
-        return obj instanceof Moment;
-    };
 
-    // for typechecking Duration objects
-    moment.isDuration = function (obj) {
-        return obj instanceof Duration;
-    };
+    /************************************
+        Moment Prototype
+    ************************************/
 
-    // shortcut for prototype
+
     moment.fn = Moment.prototype = {
 
         clone : function () {
@@ -944,6 +1059,27 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
 
         toDate : function () {
             return this._d;
+        },
+
+        toArray : function () {
+            var m = this;
+            return [
+                m.year(),
+                m.month(),
+                m.date(),
+                m.hours(),
+                m.minutes(),
+                m.seconds(),
+                m.milliseconds(),
+                !!this._isUTC
+            ];
+        },
+
+        isValid : function () {
+            if (this._a) {
+                return !compareArrays(this._a, (this._a[7] ? moment.utc(this) : this).toArray());
+            }
+            return !isNaN(this._d.getTime());
         },
 
         utc : function () {
@@ -996,7 +1132,7 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
         },
 
         from : function (time, withoutSuffix) {
-            return moment.duration(this.diff(time)).humanize(!withoutSuffix);
+            return moment.duration(this.diff(time)).lang(this._lang).humanize(!withoutSuffix);
         },
 
         fromNow : function (withoutSuffix) {
@@ -1005,7 +1141,7 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
 
         calendar : function () {
             var diff = this.diff(moment().sod(), 'days', true),
-                calendar = moment.calendar,
+                calendar = this.lang().calendar,
                 allElse = calendar.sameElse,
                 format = diff < -6 ? allElse :
                 diff < -1 ? calendar.lastWeek :
@@ -1032,20 +1168,43 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
                 this.add({ d : input - day });
         },
 
+        startOf: function (val) {
+            // the following switch intentionally omits break keywords
+            // to utilize falling through the cases.
+            switch (val.replace(/s$/, '')) {
+            case 'year':
+                this.month(0);
+                /* falls through */
+            case 'month':
+                this.date(1);
+                /* falls through */
+            case 'day':
+                this.hours(0);
+                /* falls through */
+            case 'hour':
+                this.minutes(0);
+                /* falls through */
+            case 'minute':
+                this.seconds(0);
+                /* falls through */
+            case 'second':
+                this.milliseconds(0);
+                /* falls through */
+            }
+            return this;
+        },
+
+        endOf: function (val) {
+            return this.startOf(val).add(val.replace(/s?$/, 's'), 1).subtract('ms', 1);
+        },
+        
         sod: function () {
-            return moment(this)
-                .hours(0)
-                .minutes(0)
-                .seconds(0)
-                .milliseconds(0);
+            return this.clone().startOf('day');
         },
 
         eod: function () {
             // end of day = start of day plus 1 day, minus 1 millisecond
-            return this.sod().add({
-                d : 1,
-                ms : -1
-            });
+            return this.clone().endOf('day');
         },
 
         zone : function () {
@@ -1053,7 +1212,19 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
         },
 
         daysInMonth : function () {
-            return moment(this).month(this.month() + 1).date(0).date();
+            return moment.utc([this.year(), this.month() + 1, 0]).date();
+        },
+
+        // If passed a language key, it will set the language for this
+        // instance.  Otherwise, it will return the language configuration
+        // variables for this instance.
+        lang : function (lang) {
+            if (lang === undefined) {
+                return getLangDefinition(this);
+            } else {
+                this._lang = lang;
+                return this;
+            }
         }
     };
 
@@ -1078,6 +1249,12 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
     // add shortcut for year (uses different syntax than the getter/setter 'year' == 'FullYear')
     makeGetterAndSetter('year', 'FullYear');
 
+
+    /************************************
+        Duration Prototype
+    ************************************/
+
+
     moment.duration.fn = Duration.prototype = {
         weeks : function () {
             return absRound(this.days() / 7);
@@ -1091,15 +1268,17 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
 
         humanize : function (withSuffix) {
             var difference = +this,
-                rel = moment.relativeTime,
-                output = relativeTime(difference, !withSuffix);
+                rel = this.lang().relativeTime,
+                output = relativeTime(difference, !withSuffix, this.lang());
 
             if (withSuffix) {
                 output = (difference <= 0 ? rel.past : rel.future).replace(/%s/i, output);
             }
 
             return output;
-        }
+        },
+
+        lang : moment.fn.lang
     };
 
     function makeDurationGetter(name) {
@@ -1123,13 +1302,22 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
 
     makeDurationAsGetter('Weeks', 6048e5);
 
+
+    /************************************
+        Exposing Moment
+    ************************************/
+
+
     // CommonJS module is defined
     if (hasModule) {
         module.exports = moment;
     }
     /*global ender:false */
-    if (typeof window !== 'undefined' && typeof ender === 'undefined') {
-        window.moment = moment;
+    if (typeof ender === 'undefined') {
+        // here, `this` means `window` in the browser, or `global` on the server
+        // add `moment` as a global object via a string identifier,
+        // for Closure Compiler "advanced" mode
+        this['moment'] = moment;
     }
     /*global define:false */
     if (typeof define === "function" && define.amd) {
@@ -1137,7 +1325,7 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
             return moment;
         });
     }
-})(Date);
+}).call(this, Date);
 /*global DBCollection: false, DBQuery: false */
 /*jslint indent: 4, plusplus: true */
 /**
@@ -1219,7 +1407,7 @@ this._chain)}});j(["concat","join","slice"],function(a){var b=k[a];m.prototype[a
 		if (typeof keyString === 'string') {
 			arr = keyString.split('.');
 			for (i = 0; i < arr.length; i++) {
-				if (typeof obj === 'object' && obj.hasOwnProperty(arr[i])) {
+				if (obj && typeof obj === 'object' && obj.hasOwnProperty(arr[i])) {
 					obj = obj[arr[i]];
 				} else {
 					return;

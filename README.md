@@ -11,21 +11,28 @@ for dealing with Mongo collections and queries.
 
 ## What's Included? ##
 
-- [underscore.js](http://documentcloud.github.com/underscore/) 
+- [underscore.js](http://documentcloud.github.com/underscore/) - Underscore.js is a
+  utility-belt library for JavaScript that provides support for the usual functional
+  suspects (each, map, reduce, filter...) without extending any core JavaScript objects.
 
-- [underscore.string.js](http://epeli.github.com/underscore.string/)
+- [underscore.string.js](http://epeli.github.com/underscore.string/) - Javascript lacks
+  complete string manipulation operations.  This an attempt to fill that gap.
 
-- [moment.js](http://momentjs.com/)
+- [moment.js](http://momentjs.com/) - A lightweight javascript date library for parsing,
+  validating, manipulating, and formatting dates.
 
-- [distinct2()](http://skratchdot.com/projects/mongodb-distinct2/)
+- [distinct2()](http://skratchdot.com/projects/mongodb-distinct2/) - Similar to the built-in distinct()
+  function, but with more capabilities.
 
-- [distinctTypes()](http://skratchdot.com/projects/mongodb-distinct-types/)
+- [distinctTypes()](http://skratchdot.com/projects/mongodb-distinct-types/) - Similar to the 
+  db.myCollection.distinct() function, distinctTypes() will return “types” rather than “values”.
 
-- [flatten()](http://skratchdot.com/projects/mongodb-flatten/)
+- [flatten()](http://skratchdot.com/projects/mongodb-flatten/) - The flatten() function is a 
+  mapReduce that flattens documents into key/value pairs.
 
-- [schema()](http://skratchdot.com/projects/mongodb-schema/)
+- [schema()](http://skratchdot.com/projects/mongodb-schema/) - A schema analysis tool for MongoDB.
 
-- [wild()](http://skratchdot.com/projects/mongodb-wild/)
+- [wild()](http://skratchdot.com/projects/mongodb-wild/) - Adds a wildcard search to the mongodb shell.
 
 - A console wrapper so calls like console.log() and console.dir() don't error out
 
@@ -80,13 +87,33 @@ Now, when starting the shell, you can pass in the **mesh.config.js** file along 
 coming soon
 
 
+## For Developers ##
+
+
+#### Getting The Code ####
+
+    git clone git://github.com/skratchdot/mesh.git
+    cd mesh
+    git submodule update --init --recursive
+
+
+#### Updating submodule sources ####
+
+    git submodule foreach git pull
+
+
 ## Version History ##
 
 #### v1.0.0 - Released July 17, 2012 ####
   * Initial Release
 
 #### v1.1.0 - Released August 15, 2012 ####
-  * Updating submodules
   * Adding [distinct2.js](http://skratchdot.com/projects/mongodb-distinct2/)
   * implementing mesh.toString() so the console prints help info
 
+#### v1.1.1 - Released August 16, 2012
+  * Updating submodules
+  * Updating README.md with "What's Included?" descriptions
+  * Updating README.md with "For Deveopers" section
+  * Small fix to [distinct2.js](http://skratchdot.com/projects/mongodb-distinct2/)
+  
