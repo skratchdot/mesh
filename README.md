@@ -21,6 +21,9 @@ for dealing with Mongo collections and queries.
 - [moment.js](http://momentjs.com/) - A lightweight javascript date library for parsing,
   validating, manipulating, and formatting dates.
 
+- [Sugar](http://sugarjs.com/) - Sugar is a Javascript library that extends native objects with
+  helpful methods. It is designed to be intuitive, unobtrusive, and let you do more with less code.
+
 - [distinct2()](http://skratchdot.com/projects/mongodb-distinct2/) - Similar to the built-in distinct()
   function, but with more capabilities.
 
