@@ -107,16 +107,20 @@ coming soon
 
 ## Version History ##
 
-#### v1.0.0 - Released July 17, 2012 ####
-  * Initial Release
-
-#### v1.1.0 - Released August 15, 2012 ####
-  * Adding [distinct2.js](http://skratchdot.com/projects/mongodb-distinct2/)
-  * implementing mesh.toString() so the console prints help info
+#### v1.1.2 - Released August 16, 2012
+  * Mix in non-conflicting string functions to the Underscore namespace
+  * adding Sugar: http://sugarjs.com/
+  * using minified version of moment.js
 
 #### v1.1.1 - Released August 16, 2012
   * Updating submodules
   * Updating README.md with "What's Included?" descriptions
   * Updating README.md with "For Deveopers" section
   * Small fix to [distinct2.js](http://skratchdot.com/projects/mongodb-distinct2/)
-  
+
+#### v1.1.0 - Released August 15, 2012 ####
+  * Adding [distinct2.js](http://skratchdot.com/projects/mongodb-distinct2/)
+  * implementing mesh.toString() so the console prints help info
+
+#### v1.0.0 - Released July 17, 2012 ####
+  * Initial Release
