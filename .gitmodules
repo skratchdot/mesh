@@ -25,3 +25,6 @@
 [submodule "lib/Sugar"]
 	path = lib/Sugar
 	url = https://github.com/andrewplummer/Sugar.git
+[submodule "lib/science.js"]
+	path = lib/science.js
+	url = https://github.com/jasondavies/science.js.git

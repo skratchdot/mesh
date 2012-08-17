@@ -24,6 +24,9 @@ for dealing with Mongo collections and queries.
 - [Sugar](http://sugarjs.com/) - Sugar is a Javascript library that extends native objects with
   helpful methods. It is designed to be intuitive, unobtrusive, and let you do more with less code.
 
+- [science.js](https://github.com/jasondavies/science.js) - Scientific and statistical computing
+  in JavaScript.
+
 - [distinct2()](http://skratchdot.com/projects/mongodb-distinct2/) - Similar to the built-in distinct()
   function, but with more capabilities.
 
@@ -106,6 +109,9 @@ coming soon
 
 
 ## Version History ##
+
+#### v1.1.3 - Released August 16, 2012
+  * adding science.js: https://github.com/jasondavies/science.js
 
 #### v1.1.2 - Released August 16, 2012
   * Mix in non-conflicting string functions to the Underscore namespace
