@@ -19,12 +19,18 @@
  * 
  *   underscore.js - http://underscorejs.org
  *     Copyright (c) 2009-2012 Jeremy Ashkenas, DocumentCloud
- *   
+ * 
  *   underscore.string.js - http://epeli.github.com/underscore.string/
  *     Copyright (c) 2011 Esa-Matti Suuronen esa-matti@suuronen.org
- *   
- *   moment.js - momentjs.com
+ * 
+ *   moment.js - http://momentjs.com
  *     Copyright (c) 2011-2012 Tim Wood
+ * 
+ *   sugar - http://sugarjs.com
+ *     Copyright (c) 2011 Andrew Plummer
+ * 
+ *   science.js - https://github.com/jasondavies/science.js
+ *     Copyright (c) 2011, Jason Davies
  * 
  */
 var mesh = mesh || (function (global) {
