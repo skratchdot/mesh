@@ -3,8 +3,8 @@
 /*!
  * mesh - the MongoDB Extended Shell
  * 
- *      Version: 1.1.3
- *         Date: August 16, 2012
+ *      Version: 1.1.4
+ *         Date: August 20, 2012
  *      Project: http://skratchdot.com/projects/mesh/
  *  Source Code: https://github.com/skratchdot/mesh/
  *       Issues: https://github.com/skratchdot/mesh/issues/
@@ -25,9 +25,6 @@
  * 
  *   moment.js - http://momentjs.com
  *     Copyright (c) 2011-2012 Tim Wood
- * 
- *   sugar - http://sugarjs.com
- *     Copyright (c) 2011 Andrew Plummer
  * 
  *   science.js - https://github.com/jasondavies/science.js
  *     Copyright (c) 2011, Jason Davies
@@ -76,7 +73,7 @@ var mesh = mesh || (function (global) {
 	 * Print the current version
 	 */
 	api.version = function () {
-		return print('mesh (the MongoDB Extended Shell) version: 1.1.3');
+		return print('mesh (the MongoDB Extended Shell) version: 1.1.4');
 	};
 
 	/*

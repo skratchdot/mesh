@@ -21,9 +21,6 @@ for dealing with Mongo collections and queries.
 - [moment.js](http://momentjs.com/) - A lightweight javascript date library for parsing,
   validating, manipulating, and formatting dates.
 
-- [Sugar](http://sugarjs.com/) - Sugar is a Javascript library that extends native objects with
-  helpful methods. It is designed to be intuitive, unobtrusive, and let you do more with less code.
-
 - [science.js](https://github.com/jasondavies/science.js) - Scientific and statistical computing
   in JavaScript.
 
@@ -109,6 +106,9 @@ coming soon
 
 
 ## Version History ##
+
+#### v1.1.4 - Released August 20, 2012
+  * removing Sugar (rely on underscore.js instead)
 
 #### v1.1.3 - Released August 16, 2012
   * adding science.js: https://github.com/jasondavies/science.js
