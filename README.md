@@ -109,6 +109,7 @@ coming soon
 
 #### v1.1.4 - Released August 20, 2012
   * removing Sugar (rely on underscore.js instead)
+  * updating submodules
 
 #### v1.1.3 - Released August 16, 2012
   * adding science.js: https://github.com/jasondavies/science.js
