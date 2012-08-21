@@ -108,16 +108,16 @@ coming soon
 ## Version History ##
 
 #### v1.1.4 - Released August 20, 2012
-  * removing Sugar (rely on underscore.js instead)
+  * removing [Sugar](http://sugarjs.com/) (rely on [underscore.js](http://documentcloud.github.com/underscore/) instead)
   * updating submodules
 
 #### v1.1.3 - Released August 16, 2012
-  * adding science.js: https://github.com/jasondavies/science.js
+  * adding [science.js](https://github.com/jasondavies/science.js)
 
 #### v1.1.2 - Released August 16, 2012
   * Mix in non-conflicting string functions to the Underscore namespace
-  * adding Sugar: http://sugarjs.com/
-  * using minified version of moment.js
+  * adding [Sugar](http://sugarjs.com/)
+  * using minified version of [moment.js](http://momentjs.com/)
 
 #### v1.1.1 - Released August 16, 2012
   * Updating submodules
