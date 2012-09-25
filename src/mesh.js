@@ -3,8 +3,8 @@
 /*!
  * mesh - the MongoDB Extended Shell
  * 
- *      Version: 1.1.4
- *         Date: August 20, 2012
+ *      Version: 1.2.0
+ *         Date: September 24, 2012
  *      Project: http://skratchdot.com/projects/mesh/
  *  Source Code: https://github.com/skratchdot/mesh/
  *       Issues: https://github.com/skratchdot/mesh/issues/
@@ -34,6 +34,7 @@ var mesh = mesh || (function (global) {
 	'use strict';
 
 	var api,
+		lastTime = null,
 		config = {
 			defaultPrompt : 0
 		};
@@ -65,7 +66,7 @@ var mesh = mesh || (function (global) {
 		// Handle defaultPrompt
 		if (settings.hasOwnProperty('defaultPrompt')) {
 			config.defaultPrompt = settings.defaultPrompt;
-			api.setPrompt(config.defaultPrompt);
+			api.prompt(config.defaultPrompt);
 		}
 	};
 
@@ -73,7 +74,7 @@ var mesh = mesh || (function (global) {
 	 * Print the current version
 	 */
 	api.version = function () {
-		return print('mesh (the MongoDB Extended Shell) version: 1.1.4');
+		return print('mesh (the MongoDB Extended Shell) version: 1.2.0');
 	};
 
 	/*
@@ -99,7 +100,7 @@ var mesh = mesh || (function (global) {
 	 *   3: 'host:dbname>'
 	 *   4: '[YYYY-MM-DD hh:mm:ss] host:dbname>'
 	 */
-	api.setPrompt = function (newPrompt) {
+	api.prompt = function (newPrompt) {
 		var base = '>';
 		if (typeof newPrompt === 'function') {
 			global.prompt = newPrompt;
@@ -144,6 +145,38 @@ var mesh = mesh || (function (global) {
 	 */
 	api.keys = function (obj) {
 		return _.keys(obj || global).sort();
+	};
+
+	/*
+	 * If passed a function, it will display the function execution time.
+	 * 
+	 * If passed anything else, it will just print the current time.
+	 * 
+	 * This function keeps track of the last time it was called, and will output
+	 * how long it's been since the last time it was called.
+	 */
+	api.time = function (obj) {
+		var start = moment(),
+			formatString = 'YYYY-MM-DD hh:mm:ss a';
+
+		// Current Time
+		print('Current Time: ' + start.format(formatString));
+
+		// Last time called
+		if (lastTime !== null) {
+			print('Last time called ' + lastTime.fromNow() + ' [' + start.format(formatString) + ']');
+		}
+
+		// Execute function if one is passed
+		if (typeof obj === 'function') {
+			print('Executing function...');
+			obj.apply();
+			print(' Started ' + start.fromNow());
+			print('Finished: ' + moment().format(formatString));
+		}
+
+		// Save last time
+		lastTime = start;
 	};
 
 	return api;

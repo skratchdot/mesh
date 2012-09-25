@@ -107,6 +107,11 @@ coming soon
 
 ## Version History ##
 
+#### v1.2.0 - Released September 24, 2012
+  * mesh.setPrompt() is now mesh.prompt()
+  * updating libraries
+  * adding mesh.time() which displays function execution times
+
 #### v1.1.4 - Released August 20, 2012
   * removing [Sugar](http://sugarjs.com/) (rely on [underscore.js](http://documentcloud.github.com/underscore/) instead)
   * updating submodules
