@@ -109,6 +109,9 @@ coming soon
 
 ## Version History ##
 
+#### v1.2.2 - Released October 20, 2012
+  * updating libraries: mongodb-flatten, underscore, and underscore.string
+
 #### v1.2.1 - Released October 7, 2012
   * updating libraries: moment.js, mongodb-distinct2.js, and underscore.js
   * [json2.js](https://github.com/douglascrockford/JSON-js) is now included due 
