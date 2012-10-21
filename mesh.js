@@ -3,8 +3,8 @@
 /*!
  * mesh - the MongoDB Extended Shell
  * 
- *      Version: 1.2.2
- *         Date: October 7, 2012
+ *      Version: 1.2.3
+ *         Date: October 21, 2012
  *      Project: http://skratchdot.com/projects/mesh/
  *  Source Code: https://github.com/skratchdot/mesh/
  *       Issues: https://github.com/skratchdot/mesh/issues/
@@ -74,7 +74,7 @@ var mesh = mesh || (function (global) {
 	 * Print the current version
 	 */
 	api.version = function () {
-		return print('mesh (the MongoDB Extended Shell) version: 1.2.2');
+		return print('mesh (the MongoDB Extended Shell) version: 1.2.3');
 	};
 
 	/*
@@ -1023,8 +1023,8 @@ if (!JSON) {
 /**
  * MongoDB - flatten.js
  * 
- *      Version: 1.1
- *         Date: October 20, 2012
+ *      Version: 1.2
+ *         Date: October 21, 2012
  *      Project: http://skratchdot.com/projects/mongodb-flatten/
  *  Source Code: https://github.com/skratchdot/mongodb-flatten/
  *       Issues: https://github.com/skratchdot/mongodb-flatten/issues/
@@ -1039,6 +1039,7 @@ if (!JSON) {
 	'use strict';
 
 	var currentDb, emitKeys, insertKey, flatten,
+		statusDelayInMs = 10000,
 		currentId = null, currentDate = null, currentTick = null, previousTick = null;
 
 	// Assumes that currentTick is a Date, and currentId is a number
@@ -1082,7 +1083,7 @@ if (!JSON) {
 	 * @param {string} collectionName - the name of the collection in which the results will be stored
 	 */
 	flatten = function (db, arr, collectionName) {
-		var collection, i;
+		var collection, i, numDocs = arr.length, currentDoc;
 
 		// If an invalid name is passed, create a temporary collection
 		if (typeof collectionName !== 'string' || collectionName.length === 0) {
@@ -1090,36 +1091,44 @@ if (!JSON) {
 		}
 
 		// Print some debug info
-		print('Flattening ' + arr.length + ' document(s) into the "' + collectionName + '" collection.');
+		print('Flattening ' + numDocs + ' document(s) into the "' + collectionName + '" collection.');
 
 		// Get our collection
 		collection = db.getCollection(collectionName);
 
 		// Empty our collection
-		collection.remove();
+		collection.drop();
+
+		// Index our collection to speed up lookups
+		collection.ensureIndex({i : 1});
+		collection.ensureIndex({k : 1});
+		collection.ensureIndex({v : 1});
 
 		// Initialize some global counters/variables
 		previousTick = new Date().getTime();
 		currentId = 0;
 
 		// Loop through all our objects, inserting records into our collection
-		for (i = 0; i < arr.length; i++) {
+		for (i = 0; i < numDocs; i++) {
+			// The current document we are processing
+			currentDoc = arr[i];
+
 			// Output some debugging info if needed
 			currentDate = new Date();
 			currentTick = currentDate.getTime();
-			if (currentTick - previousTick > 1000) {
-				print('Flattened ' + i + ' document(s) and ' + currentId + ' key(s) at ' + currentDate);
+			if (currentTick - previousTick > statusDelayInMs) {
+				print('Flattened ' + i + ' of ' + numDocs + ' document(s) and ' + currentId + ' key(s) at ' + currentDate);
 				previousTick = currentTick;
 			}
 
 			// There's a chance documents don't have
 			// _id values (capped collections, internal collections)
-			if (!arr[i].hasOwnProperty('_id')) {
-				arr[i]._id = 'unknown';
+			if (!currentDoc.hasOwnProperty('_id')) {
+				currentDoc._id = 'unknown';
 			}
 
 			// Insert key/value pairs into our new collection
-			emitKeys(collection, arr[i]._id, arr[i], '');
+			emitKeys(collection, currentDoc._id, currentDoc, '');
 		}
 
 		return collection;
