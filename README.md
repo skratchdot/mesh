@@ -110,18 +110,23 @@ coming soon
 ## Version History ##
 
 #### v1.2.4 - Released October 22, 2012
-  * updating libraries: mongodb-flatten.js and underscore.js
+  * updating libraries: [flatten()](http://skratchdot.com/projects/mongodb-flatten/)
+  and [underscore.js](http://documentcloud.github.com/underscore/)
 
 #### v1.2.3 - Released October 21, 2012
-  * updating libraries: mongodb-flatten.js
+  * updating libraries: [flatten()](http://skratchdot.com/projects/mongodb-flatten/)
 
 #### v1.2.2 - Released October 20, 2012
-  * updating libraries: mongodb-flatten.js, underscore.js, and underscore.string.js
+  * updating libraries: [flatten()](http://skratchdot.com/projects/mongodb-flatten/),
+  [underscore.js](http://documentcloud.github.com/underscore/), and
+  [underscore.string.js](http://epeli.github.com/underscore.string/)
 
 #### v1.2.1 - Released October 7, 2012
-  * updating libraries: moment.js, mongodb-distinct2.js, and underscore.js
+  * updating libraries: [moment.js](http://momentjs.com/),
+  [distinct2()](http://skratchdot.com/projects/mongodb-distinct2/), and
+  [underscore.js](http://documentcloud.github.com/underscore/)
   * [json2.js](https://github.com/douglascrockford/JSON-js) is now included due 
-    to the mongodb-distinct2.js upgrade
+    to the [distinct2()](http://skratchdot.com/projects/mongodb-distinct2/) upgrade
 
 #### v1.2.0 - Released September 24, 2012
   * mesh.setPrompt() is now mesh.prompt()
