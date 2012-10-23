@@ -109,6 +109,9 @@ coming soon
 
 ## Version History ##
 
+#### v1.2.4 - Released October 22, 2012
+  * updating libraries: mongodb-flatten.js and underscore.js
+
 #### v1.2.3 - Released October 21, 2012
   * updating libraries: mongodb-flatten.js
 

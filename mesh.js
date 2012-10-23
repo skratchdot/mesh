@@ -3,8 +3,8 @@
 /*!
  * mesh - the MongoDB Extended Shell
  * 
- *      Version: 1.2.3
- *         Date: October 21, 2012
+ *      Version: 1.2.4
+ *         Date: October 22, 2012
  *      Project: http://skratchdot.com/projects/mesh/
  *  Source Code: https://github.com/skratchdot/mesh/
  *       Issues: https://github.com/skratchdot/mesh/issues/
@@ -74,7 +74,7 @@ var mesh = mesh || (function (global) {
 	 * Print the current version
 	 */
 	api.version = function () {
-		return print('mesh (the MongoDB Extended Shell) version: 1.2.3');
+		return print('mesh (the MongoDB Extended Shell) version: 1.2.4');
 	};
 
 	/*
@@ -1023,8 +1023,8 @@ if (!JSON) {
 /**
  * MongoDB - flatten.js
  * 
- *      Version: 1.2
- *         Date: October 21, 2012
+ *      Version: 1.3
+ *         Date: October 22, 2012
  *      Project: http://skratchdot.com/projects/mongodb-flatten/
  *  Source Code: https://github.com/skratchdot/mongodb-flatten/
  *       Issues: https://github.com/skratchdot/mongodb-flatten/issues/
@@ -1042,7 +1042,15 @@ if (!JSON) {
 		statusDelayInMs = 10000,
 		currentId = null, currentDate = null, currentTick = null, previousTick = null;
 
-	// Assumes that currentTick is a Date, and currentId is a number
+	/**
+	 * @function
+	 * @name insertKey
+	 * @memberOf anonymous
+	 * @param {DBCollection} collection - the collection we are storing our flattened data in
+	 * @param {ObjectId/object} id - the id of the document being flattened
+	 * @param {string} key - the flattened key
+	 * @param {any} value - the value of the flattened key
+	 */
 	insertKey = function (collection, id, key, value) {
 		// Increment our currentId
 		currentId = currentId + 1;
@@ -1056,6 +1064,15 @@ if (!JSON) {
 		});
 	};
 
+	/**
+	 * @function
+	 * @name emitKeys
+	 * @memberOf anonymous
+	 * @param {DBCollection} collection - the collection we are storing our flattened data in
+	 * @param {ObjectId/object} id - the id of the document being flattened
+	 * @param {object} node - the current node being flattened. initially this is the entire document
+	 * @param {string} keyString - the current key/path. will be built recursively. initially an empty string.
+	 */
 	emitKeys = function (collection, id, node, keyString) {
 		var key, newKey, type = typeof (node);
 		if (type === 'object' || type === 'array') {
@@ -1078,12 +1095,11 @@ if (!JSON) {
 	 * @function
 	 * @name flatten
 	 * @memberOf anonymous
-	 * @param {} db - the current mongo database. We will return db.getCollection(collectionName)
-	 * @param {} arr - loop through this array flattening items, and storing them in collectionName
+	 * @param {DBQuery} query - the current DBQuery object/cursor
 	 * @param {string} collectionName - the name of the collection in which the results will be stored
 	 */
-	flatten = function (db, arr, collectionName) {
-		var collection, i, numDocs = arr.length, currentDoc;
+	flatten = function (query, collectionName) {
+		var collection, i, numDocs = query.size(), currentDoc, currentDocNum;
 
 		// If an invalid name is passed, create a temporary collection
 		if (typeof collectionName !== 'string' || collectionName.length === 0) {
@@ -1094,7 +1110,7 @@ if (!JSON) {
 		print('Flattening ' + numDocs + ' document(s) into the "' + collectionName + '" collection.');
 
 		// Get our collection
-		collection = db.getCollection(collectionName);
+		collection = query._db.getCollection(collectionName);
 
 		// Empty our collection
 		collection.drop();
@@ -1107,17 +1123,19 @@ if (!JSON) {
 		// Initialize some global counters/variables
 		previousTick = new Date().getTime();
 		currentId = 0;
+		currentDocNum = 0;
 
 		// Loop through all our objects, inserting records into our collection
-		for (i = 0; i < numDocs; i++) {
+		while (query.hasNext()) {
 			// The current document we are processing
-			currentDoc = arr[i];
+			currentDoc = query.next();
+			currentDocNum++;
 
 			// Output some debugging info if needed
 			currentDate = new Date();
 			currentTick = currentDate.getTime();
 			if (currentTick - previousTick > statusDelayInMs) {
-				print('Flattened ' + i + ' of ' + numDocs + ' document(s) and ' + currentId + ' key(s) at ' + currentDate);
+				print('Flattened ' + currentDocNum + ' of ' + numDocs + ' document(s) and ' + currentId + ' key(s) at ' + currentDate);
 				previousTick = currentTick;
 			}
 
@@ -1141,7 +1159,7 @@ if (!JSON) {
 	 * @param {string} collectionName - the name of the collection in which the results will be stored
 	 */
 	DBQuery.prototype.flatten = function (collectionName) {
-		return flatten(this._db, this.toArray(), collectionName);
+		return flatten(this, collectionName);
 	};
 
 	/**
