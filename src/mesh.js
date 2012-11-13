@@ -1,10 +1,10 @@
 /*jslint maxerr: 50, indent: 4, nomen: true */
-/*global print, _, moment, db */
+/*global print, _, moment, db, ObjectId */
 /*!
  * mesh - the MongoDB Extended Shell
  * 
- *      Version: 1.2.4
- *         Date: October 22, 2012
+ *      Version: 1.3.0
+ *         Date: November 13, 2012
  *      Project: http://skratchdot.com/projects/mesh/
  *  Source Code: https://github.com/skratchdot/mesh/
  *       Issues: https://github.com/skratchdot/mesh/issues/
@@ -36,7 +36,9 @@ var mesh = mesh || (function (global) {
 	var api,
 		lastTime = null,
 		config = {
-			defaultPrompt : 0
+			defaultPrompt : 0,	// 0-4 or a string
+			globalTid : null,	// null or any string. passing in 't' will make t() work
+			globalOid : null	// null or any string. passing in 'o' will make o() work
 		};
 
 	/*
@@ -68,13 +70,21 @@ var mesh = mesh || (function (global) {
 			config.defaultPrompt = settings.defaultPrompt;
 			api.prompt(config.defaultPrompt);
 		}
+		// Handle globalTid override
+		if (settings.hasOwnProperty('globalTid') && typeof settings.globalTid === 'string') {
+			global[settings.globalTid] = api.tid;
+		}
+		// Handle globalOid override
+		if (settings.hasOwnProperty('globalOid') && typeof settings.globalOid === 'string') {
+			global[settings.globalOid] = api.oid;
+		}
 	};
 
 	/*
 	 * Print the current version
 	 */
 	api.version = function () {
-		return print('mesh (the MongoDB Extended Shell) version: 1.2.4');
+		return print('mesh (the MongoDB Extended Shell) version: 1.3.0');
 	};
 
 	/*
@@ -101,7 +111,7 @@ var mesh = mesh || (function (global) {
 	 *   4: '[YYYY-MM-DD hh:mm:ss] host:dbname>'
 	 */
 	api.prompt = function (newPrompt) {
-		var base = '>';
+		var base = '> ';
 		if (typeof newPrompt === 'function') {
 			global.prompt = newPrompt;
 		} else if (newPrompt === 1) {
@@ -135,9 +145,71 @@ var mesh = mesh || (function (global) {
 					(isMaster ? '' : ')') +
 					base;
 			};
+		} else if (typeof newPrompt === 'string') {
+			global.prompt = function () {
+				return newPrompt;
+			};
 		} else {
 			delete global.prompt;
 		}
+	};
+
+	/*
+	 * A simple wrapper for ObjectId();
+	 */
+	api.oid = function (oidString) {
+		if (typeof oidString === 'string') {
+			return new ObjectId(oidString);
+		}
+		return new ObjectId();
+	};
+
+	/*
+	 * Generate an ObjectId() based on a time stamp.
+	 *
+	 * usage:
+	 *
+	 *		 // pass in nothing to get an ObjectId based on the current timestamp
+	 *		 mesh.tid();
+	 *		 // you can pass in any valid Date object
+	 *		 mesh.tid(new Date());
+	 *		 // you can pass in any valid moment object
+	 *		 mesh.tid(moment());
+	 *		 mesh.tid('2 minutes ago');
+	 *
+	 * see:
+	 *
+	 *		 http://www.kchodorow.com/blog/2011/12/20/querying-for-timestamps-using-objectids/
+	 *		 http://www.mongodb.org/display/DOCS/Object+IDs
+	 *
+	 * ObjectIds are 12-byte BSON objects:
+	 *
+	 * TimeStamp [bytes 0-3]:
+	 *		 This is a unix style timestamp. It is a signed int representing
+	 *		 the number of seconds before or after January 1st 1970 (UTC).
+	 *
+	 * Machine [bytes 4-6]
+	 *		 This is the first three bytes of the (md5) hash of the machine host
+	 *		 name, or of the mac/network address, or the virtual machine id.
+	 *
+	 * Pid [bytes 7-8]
+	 *		 This is 2 bytes of the process id (or thread id) of the process
+	 *		 generating the ObjectId.
+	 *
+	 * Increment [bytes 9-11]
+	 *		 This is an ever incrementing value starting with a random number.
+	 */
+	api.tid = function (newMoment) {
+		var theDate, seconds, hexSecs;
+		newMoment = moment(newMoment);
+		if (newMoment && newMoment.hasOwnProperty('isValid') && newMoment.isValid()) {
+			theDate = newMoment.toDate();
+		} else {
+			theDate = new Date();
+		}
+		seconds = parseInt(theDate.getTime() / 1000, 10);
+		hexSecs = seconds.toString(16);
+		return new ObjectId(hexSecs + '0000000000000000');
 	};
 
 	/*

@@ -45,6 +45,10 @@ for dealing with Mongo collections and queries.
 
 - [JSON2.js](https://github.com/douglascrockford/JSON-js) - JSON.stringify() and JSON.parse()
 
+- mesh.oid() - a wrapper for ObjectId()
+
+- mesh.tid() - a wrapper for creating ObjectId values based on a timestamp
+
 
 ## Installation ##
 
@@ -78,7 +82,9 @@ you won't lose your default settings when updating mesh. Currently, there is onl
 You can create a file "mesh.config.js".  It might look like:
 
     mesh.config({
-        defaultPrompt : 4
+    		defaultPrompt : 4,	// 0-4 or a string
+    		globalTid : 't',	// null or any string. passing in 't' will make t() work
+    		globalOid : null	// null or any string. passing in 'o' will make o() work
     });
 
 Now, when starting the shell, you can pass in the **mesh.config.js** file along with your 
@@ -108,6 +114,15 @@ coming soon
 
 
 ## Version History ##
+
+#### v1.3.0 - Released November 13, 2012
+  * updating libraries: [moment.js](http://momentjs.com/),
+  [distinct2()](http://skratchdot.com/projects/mongodb-distinct2/),
+  [underscore.js](http://documentcloud.github.com/underscore/), and
+  [underscore.string.js](http://epeli.github.com/underscore.string/)
+  * adding mesh.oid() - a wrapper for ObjectId()
+  * adding mesh.tid() - a wrapper for creating ObjectId values based on a timestamp
+  * config values to change mesh.tid() to t() or mesh.oid() to o()
 
 #### v1.2.4 - Released October 22, 2012
   * updating libraries: [flatten()](http://skratchdot.com/projects/mongodb-flatten/)
