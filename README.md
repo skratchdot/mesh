@@ -60,7 +60,7 @@ Add this script to your .mongorc.js file.
 
 _See:_ [http://www.mongodb.org/display/DOCS/Overview+-+The+MongoDB+Interactive+Shell#Overview-TheMongoDBInteractiveShell-.mongorc.js](http://www.mongodb.org/display/DOCS/Overview+-+The+MongoDB+Interactive+Shell#Overview-TheMongoDBInteractiveShell-.mongorc.js)
 
-_Example:_
+_Example .mongorc.js:_
 
     load('mesh.js');
     load('mesh.config.js');
@@ -76,8 +76,8 @@ Start the shell after executing this script
 ## Configuration ##
 
 You can configure mesh by calling **mesh.config(settings)**. The benefit of keeping a config file, is that
-you won't lose your default settings when updating mesh. Currently, there is only 1 config value:
-	defaultPrompt
+you won't lose your default settings when updating mesh. Currently, there are 3 config values: defaultPrompt, 
+globalTid, and globalOid.
 
 You can create a file "mesh.config.js".  It might look like:
 
@@ -92,6 +92,10 @@ Now, when starting the shell, you can pass in the **mesh.config.js** file along 
 
     mongo --shell mesh.js mesh.config.js
 
+Or if you are using .mongorc.js:
+
+    load('mesh.js');
+    load('mesh.config.js');
 
 ## Usage ##
 
