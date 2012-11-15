@@ -1,4 +1,4 @@
-/*jslint maxerr: 50, indent: 4, nomen: true */
+/*jslint maxerr: 50, indent: 4, nomen: true, plusplus: true */
 /*global print, _, moment, db, ObjectId, hostname */
 /*!
  * mesh - the MongoDB Extended Shell
@@ -37,8 +37,7 @@ var mesh = mesh || (function (global) {
 		lastTime = null,
 		config = {
 			defaultPrompt : 0,	// 0-4 or a string
-			globalTid : null,	// null or any string. passing in 't' will make t() work
-			globalOid : null	// null or any string. passing in 'o' will make o() work
+			aliases : {}		// can pass in a map of aliases. see: mesh.setAliases();
 		};
 
 	/*
@@ -70,13 +69,8 @@ var mesh = mesh || (function (global) {
 			config.defaultPrompt = settings.defaultPrompt;
 			api.prompt(config.defaultPrompt);
 		}
-		// Handle globalTid override
-		if (settings.hasOwnProperty('globalTid') && typeof settings.globalTid === 'string') {
-			global[settings.globalTid] = api.tid;
-		}
-		// Handle globalOid override
-		if (settings.hasOwnProperty('globalOid') && typeof settings.globalOid === 'string') {
-			global[settings.globalOid] = api.oid;
+		if (settings.hasOwnProperty('aliases') && typeof settings.aliases === 'object') {
+			api.setAliases(settings.aliases);
 		}
 	};
 
@@ -95,6 +89,56 @@ var mesh = mesh || (function (global) {
 	api.help = function () {
 		api.version();
 		print('help coming soon!');
+	};
+
+	/*
+	 * Accept a map of aliases.  The keys are the aliases, and the values
+	 * are the paths to the variable.
+	 * 
+	 * For instance, if we want to create an aliase for mesh.keys() to be k(), then
+	 * we can call:
+	 * 
+	 *     mesh.setAliases({'k':'mesh.keys'});
+	 * 
+	 * We can create an alias for printjson() by doing something like:
+	 * 
+	 *     mesh.setAliases({'pj':'printjson'});
+	 * 
+	 */
+	api.setAliases = function (aliases) {
+		var alias, keys, i, skip, obj;
+
+		// do nothing if we weren't passed key/value pairs
+		if (typeof aliases !== 'object') {
+			return;
+		}
+
+		// loop through our aliases
+		for (alias in aliases) {
+			if (aliases.hasOwnProperty(alias)) {
+				// we process dot delimited strings
+				keys = aliases[alias];
+				if (typeof keys === 'string' && keys.length > 0) {
+					// we will drill down into the dot delimited string.
+					// if the given variable path doesn't exist, let's
+					// try to process the next alias
+					skip = false;
+					obj = global;
+					keys = keys.split('.');
+					for (i = 0; i < keys.length; i++) {
+						if (obj && obj[keys[i]]) {
+							obj = obj[keys[i]];
+						} else {
+							i = keys.length;
+							skip = true;
+						}
+					}
+					if (!skip) {
+						global[alias] = obj;
+					}
+				}
+			}
+		}
 	};
 
 	/*

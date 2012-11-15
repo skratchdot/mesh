@@ -75,16 +75,19 @@ Start the shell after executing this script
 
 ## Configuration ##
 
-You can configure mesh by calling **mesh.config(settings)**. The benefit of keeping a config file, is that
-you won't lose your default settings when updating mesh. Currently, there are 3 config values: defaultPrompt, 
-globalTid, and globalOid.
+You can configure mesh by calling **mesh.config(settings)**. The benefit of keeping a config file,
+is that you won't lose your default settings when updating mesh. Currently, there are 2 config values:
+defaultPrompt and aliases.
 
 You can create a file "mesh.config.js".  It might look like:
 
     mesh.config({
-    		defaultPrompt : 4,	// 0-4 or a string
-    		globalTid : 't',	// null or any string. passing in 't' will make t() work
-    		globalOid : null	// null or any string. passing in 'o' will make o() work
+    		defaultPrompt : 4,		// 0-4 or a string
+    		aliases : {				// can pass in a map of aliases.
+    			't' : 'mesh.tid',	// t() is an alias for mesh.tid()
+    			'o' : 'ObjectId',	// o() is an alias for ObjectId()
+    			'm' : 'mesh'		// m is an alias for mesh
+    		}
     });
 
 Now, when starting the shell, you can pass in the **mesh.config.js** file along with your 
@@ -120,6 +123,8 @@ coming soon
 ## Version History ##
 
 #### v1.3.1 - Released November 15, 2012
+  * adding mesh.setAliases()
+  * removing globalTid and globalOid from mesh.config in favor of using 'aliases'.
   * mesh.tid() now accepts an optional "increment" argument
   * fixing build process (version and date replaced)
   * fixing bug w/ how hostname is determined in prompt
