@@ -1,5 +1,5 @@
 /*jslint maxerr: 50, indent: 4, nomen: true */
-/*global print, _, moment, db, ObjectId */
+/*global print, _, moment, db, ObjectId, hostname */
 /*!
  * mesh - the MongoDB Extended Shell
  * 
