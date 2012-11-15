@@ -252,17 +252,7 @@ var mesh = mesh || (function (global) {
 	};
 
 	return api;
-}(this));
-
-
-// HACK: so that moment.js works
-// See cleanup.js
-// Since window doesn't exist in the mongo shell, we are temporarily setting it
-// to be the mesh object. moment.js wants to be using node, or amd, or the browser.
-// We'll act like a browser, then delete the window object in cleanup.js
-var window = window || mesh;
-
-/*global print */
+}(this));/*global print */
 /*jslint maxerr: 50, indent: 4, plusplus: true */
 /**
  * console.js - a quick wrapper so console calls don't error out in the mongodb shell
@@ -1693,13 +1683,6 @@ if (!JSON) {
 	};
 
 }());
-// HACK: so that moment.js works
-// See: mesh.js
-if (typeof window === 'function' && typeof window.moment !== 'undefined') {
-	moment = window.moment;
-	delete window;
-}
-
 // Mix in non-conflicting functions to the Underscore namespace
 _.mixin(_.str.exports());
 

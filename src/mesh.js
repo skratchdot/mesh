@@ -253,12 +253,3 @@ var mesh = mesh || (function (global) {
 
 	return api;
 }(this));
-
-
-// HACK: so that moment.js works
-// See cleanup.js
-// Since window doesn't exist in the mongo shell, we are temporarily setting it
-// to be the mesh object. moment.js wants to be using node, or amd, or the browser.
-// We'll act like a browser, then delete the window object in cleanup.js
-var window = window || mesh;
-
