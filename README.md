@@ -119,6 +119,12 @@ coming soon
 
 ## Version History ##
 
+#### v1.3.1 - Released November 15, 2012
+  * mesh.tid() now accepts an optional "increment" argument
+  * fixing build process (version and date replaced)
+  * fixing bug w/ how hostname is determined in prompt
+  * removing moment() / window hack
+
 #### v1.3.0 - Released November 13, 2012
   * updating libraries: [moment.js](http://momentjs.com/),
   [distinct2()](http://skratchdot.com/projects/mongodb-distinct2/),

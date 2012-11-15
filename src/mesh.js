@@ -3,8 +3,8 @@
 /*!
  * mesh - the MongoDB Extended Shell
  * 
- *      Version: 1.3.0
- *         Date: November 13, 2012
+ *      Version: @VERSION@ 
+ *         Date: @DATE@
  *      Project: http://skratchdot.com/projects/mesh/
  *  Source Code: https://github.com/skratchdot/mesh/
  *       Issues: https://github.com/skratchdot/mesh/issues/
@@ -84,7 +84,7 @@ var mesh = mesh || (function (global) {
 	 * Print the current version
 	 */
 	api.version = function () {
-		return print('mesh (the MongoDB Extended Shell) version: 1.3.0');
+		return print('mesh (the MongoDB Extended Shell) version: @VERSION@');
 	};
 
 	/*
