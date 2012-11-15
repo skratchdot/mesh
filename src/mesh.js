@@ -176,6 +176,9 @@ var mesh = mesh || (function (global) {
 	 *		 // you can pass in any valid moment object
 	 *		 mesh.tid(moment());
 	 *		 mesh.tid('2 minutes ago');
+	 *		 mesh.tid('June 1, 2012'); // returns ObjectId("4fc83e400000000000000000")
+	 *		 // you can pass in an optional increment value
+	 *		 mesh.tid('June 1, 2012', 3); // returns ObjectId("4fc83e400000000000000003")
 	 *
 	 * see:
 	 *
@@ -199,17 +202,25 @@ var mesh = mesh || (function (global) {
 	 * Increment [bytes 9-11]
 	 *		 This is an ever incrementing value starting with a random number.
 	 */
-	api.tid = function (newMoment) {
-		var theDate, seconds, hexSecs;
+	api.tid = function (newMoment, inc) {
+		var theDate, seconds, hexSecs, hexInc;
+
+		// build timestamp portion of ObjectId
 		newMoment = moment(newMoment);
-		if (newMoment && newMoment.hasOwnProperty('isValid') && newMoment.isValid()) {
+		if (newMoment && newMoment.isValid && newMoment.isValid()) {
 			theDate = newMoment.toDate();
 		} else {
 			theDate = new Date();
 		}
 		seconds = parseInt(theDate.getTime() / 1000, 10);
 		hexSecs = seconds.toString(16);
-		return new ObjectId(hexSecs + '0000000000000000');
+
+		// build increment portion of ObjectId
+		if (typeof inc !== 'number') {
+			inc = 0;
+		}
+		hexInc = _.lpad(parseInt(inc, 10).toString(16), 3, '0').substring(0, 3);
+		return new ObjectId(hexSecs + '0000000000000' + hexInc);
 	};
 
 	/*
