@@ -126,6 +126,7 @@ coming soon
   * adding mesh.setAliases()
   * removing globalTid and globalOid from mesh.config in favor of using 'aliases'.
   * mesh.tid() now accepts an optional "increment" argument
+  * reload mesh each time load('mesh.js') is called
   * fixing build process (version and date replaced)
   * fixing bug w/ how hostname is determined in prompt
   * removing moment() / window hack

@@ -30,7 +30,7 @@
  *     Copyright (c) 2011, Jason Davies
  * 
  */
-var mesh = mesh || (function (global) {
+var mesh = (function (global) {
 	'use strict';
 
 	var api,
