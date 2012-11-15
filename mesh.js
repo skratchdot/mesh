@@ -130,7 +130,7 @@ var mesh = mesh || (function (global) {
 			global.prompt = function () {
 				var isMaster = db.isMaster().ismaster;
 				return (isMaster ? '' : '(') +
-					db.serverStatus().host + ":" +
+					hostname() + ":" +
 					db.getName() +
 					(isMaster ? '' : ')') +
 					base;
