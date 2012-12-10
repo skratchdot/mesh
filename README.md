@@ -122,6 +122,18 @@ coming soon
 
 ## Version History ##
 
+#### v1.4.0 - Released December 9, 2012
+  * updating [distinct2()](http://skratchdot.com/projects/mongodb-distinct2/)
+  * adding some [underscore.js mixins](https://github.com/skratchdot/snippets/underscore.js/)
+    - [underscore.aggregate.js](https://github.com/skratchdot/snippets/underscore.js/underscore.aggregate.js)
+    - [underscore.avg.js](https://github.com/skratchdot/snippets/underscore.js/underscore.avg.js)
+    - [underscore.deepExtend.js](https://github.com/skratchdot/snippets/underscore.js/underscore.deepExtend.js)
+    - [underscore.deepPluck.js](https://github.com/skratchdot/snippets/underscore.js/underscore.deepPluck.js)
+    - [underscore.keyToObject.js](https://github.com/skratchdot/snippets/underscore.js/underscore.keyToObject.js)
+    - [underscore.stdev.js](https://github.com/skratchdot/snippets/underscore.js/underscore.stdev.js)
+    - [underscore.sum.js](https://github.com/skratchdot/snippets/underscore.js/underscore.sum.js)
+    - [underscore.variance.js](https://github.com/skratchdot/snippets/underscore.js/underscore.variance.js)
+
 #### v1.3.1 - Released November 15, 2012
   * adding mesh.setAliases()
   * removing globalTid and globalOid from mesh.config in favor of using 'aliases'.
