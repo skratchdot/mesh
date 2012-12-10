@@ -1,33 +1,20 @@
 /*jslint maxerr: 50, indent: 4, nomen: true, plusplus: true */
-/*global print, _, moment, db, ObjectId, hostname */
+/*global print, _, moment, db, ObjectId, hostname, DBCollection */
 /*!
  * mesh - the MongoDB Extended Shell
  * 
- *      Version: @VERSION@ 
- *         Date: @DATE@
- *      Project: http://skratchdot.com/projects/mesh/
- *  Source Code: https://github.com/skratchdot/mesh/
- *       Issues: https://github.com/skratchdot/mesh/issues/
- * Dependencies: MongoDB v1.8+
+ *	          Version: @VERSION@ 
+ *		         Date: @DATE@
+ *	          Project: http://skratchdot.com/projects/mesh/
+ *        Source Code: https://github.com/skratchdot/mesh/
+ *	           Issues: https://github.com/skratchdot/mesh/issues/
+ * Included Libraries: https://github.com/skratchdot/mesh/#whats-included
+ *       Dependencies: MongoDB v1.8+
  * 
  * Copyright 2012 <skratchdot.com>
  *   Dual licensed under the MIT or GPL Version 2 licenses.
  *   https://raw.github.com/skratchdot/mesh/master/LICENSE-MIT.txt
  *   https://raw.github.com/skratchdot/mesh/master/LICENSE-GPL.txt
- * 
- * Includes:
- * 
- *   underscore.js - http://underscorejs.org
- *     Copyright (c) 2009-2012 Jeremy Ashkenas, DocumentCloud
- * 
- *   underscore.string.js - http://epeli.github.com/underscore.string/
- *     Copyright (c) 2011 Esa-Matti Suuronen esa-matti@suuronen.org
- * 
- *   moment.js - http://momentjs.com
- *     Copyright (c) 2011-2012 Tim Wood
- * 
- *   science.js - https://github.com/jasondavies/science.js
- *     Copyright (c) 2011, Jason Davies
  * 
  */
 var mesh = (function (global) {
@@ -98,11 +85,11 @@ var mesh = (function (global) {
 	 * For instance, if we want to create an aliase for mesh.keys() to be k(), then
 	 * we can call:
 	 * 
-	 *     mesh.setAliases({'k':'mesh.keys'});
+	 *	 mesh.setAliases({'k':'mesh.keys'});
 	 * 
 	 * We can create an alias for printjson() by doing something like:
 	 * 
-	 *     mesh.setAliases({'pj':'printjson'});
+	 *	 mesh.setAliases({'pj':'printjson'});
 	 * 
 	 */
 	api.setAliases = function (aliases) {
@@ -308,3 +295,44 @@ var mesh = (function (global) {
 
 	return api;
 }(this));
+
+
+/**
+ * Insert an array of objects into a collection.
+ * 
+ * This will loop through the array, calling DBCollection.insert() on each object.
+ * 
+ * Example usage:
+ * 
+ *   // insert 2 items into myCollection
+ *   var myArray = [{_id:1,test:1}, {_id:2,test:"foo"}];
+ *   db.myCollection.insertArray(myArray);
+ *   
+ *   // transfer a few items from collection1 into collection2
+ *   db.collection2.insertArray(db.collection1.find().limit(10).toArray());
+ * 
+ * @function
+ * @name insertArray
+ * @memberOf DBCollection
+ * @param {array} arr - The array of objects to insert.
+ * @param {object} options - pass through to DBCollection.prototype.insert()
+ * @param {boolean} _allow_dot - pass through to DBCollection.prototype.insert()
+ * @throws {Exception} - when arr is not an Array.
+ */
+DBCollection.prototype.insertArray = function (arr, options, _allow_dot) {
+	'use strict';
+	var i, obj;
+	if (_.isArray(arr)) {
+		for (i = 0; i < arr.length; i++) {
+			obj = arr[i];
+			if (_.isObject(obj)) {
+				this.insert(obj, options, _allow_dot);
+			} else {
+				throw "we can't insert a non-object!";
+			}
+		}
+	} else {
+		throw "first argument is not an array!";
+	}
+};
+

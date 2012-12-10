@@ -25,3 +25,6 @@
 [submodule "lib/science.js"]
 	path = lib/science.js
 	url = https://github.com/jasondavies/science.js.git
+[submodule "lib/JSON-js"]
+	path = lib/JSON-js
+	url = git://github.com/douglascrockford/JSON-js.git

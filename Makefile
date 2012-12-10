@@ -1,4 +1,4 @@
-VERSION="1.4.0"
+VERSION="1.4.1"
 DATE=`date +"%B %d, %Y"`
 LIB=./lib
 SRC=./src
@@ -6,6 +6,8 @@ SRC=./src
 modules = \
 	$(SRC)/mesh.js \
 	$(SRC)/console.js \
+	$(LIB)/JSON-js/json2.js \
+	$(LIB)/JSON-js/cycle.js \
 	$(LIB)/underscore/underscore-min.js \
 	$(LIB)/underscore.string/dist/underscore.string.min.js \
 	$(LIB)/moment/min/moment.min.js \
