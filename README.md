@@ -51,7 +51,7 @@ for dealing with Mongo collections and queries.
 
 - a few [underscore.js mixins](https://github.com/skratchdot/snippets/tree/master/underscore.js/)
 
-- DBCollection.insertArray() - insert an array of objects into a collection
+- [DBCollection.insertArray()](https://github.com/skratchdot/mesh/blob/master/src/mongodb.insertArray.js) - insert an array of objects into a collection
 
 
 ## Installation ##
@@ -126,7 +126,14 @@ coming soon
 
 ## Version History ##
 
+#### v1.4.2 - Released February 7, 2013
+  * updating the following libraries: [moment](http://momentjs.com/),
+  [science.js](https://github.com/jasondavies/science.js),
+  [underscore.js](http://documentcloud.github.com/underscore/), and
+  [underscore.string.js](http://epeli.github.com/underscore.string/)
+
 #### v1.4.1 - Released December 10, 2012
+  * adding [DBCollection.insertArray()](https://github.com/skratchdot/mesh/blob/master/src/mongodb.insertArray.js)
   * adding [JSON-js](https://github.com/douglascrockford/JSON-js) - json2.js and cycle.js
   * updating [distinct2()](http://skratchdot.com/projects/mongodb-distinct2/),
   [underscore.js](http://documentcloud.github.com/underscore/), and
