@@ -36,14 +36,6 @@ var mesh = (function (global) {
 	};
 
 	/*
-	 * Override mesh.toString() so it calls mesh.help();
-	 */
-	api.toString = function () {
-		api.help();
-		return "";
-	};
-
-	/*
 	 * We can override the default settings by calling this function.
 	 * 
 	 * The idea is to keep a "mesh.config.js" file that calls this function.

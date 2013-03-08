@@ -126,6 +126,14 @@ coming soon
 
 ## Version History ##
 
+#### v1.4.3 - Released March 7, 2013
+  * adding mesh.ops which prints all operations.
+  * no longer printing version when tabbing.
+  * updating the following libraries: [JSON-js](https://github.com/douglascrockford/JSON-js),
+  [moment](http://momentjs.com/), [distinct2()](http://skratchdot.com/projects/mongodb-distinct2/),
+  [schema()](http://skratchdot.com/projects/mongodb-schema/), and
+  [underscore.js](http://documentcloud.github.com/underscore/)
+
 #### v1.4.2 - Released February 7, 2013
   * updating the following libraries: [moment](http://momentjs.com/),
   [science.js](https://github.com/jasondavies/science.js),

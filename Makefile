@@ -1,4 +1,4 @@
-VERSION="1.4.2"
+VERSION="1.4.3"
 DATE=`date +"%B %d, %Y"`
 LIB=./lib
 SRC=./src
@@ -17,6 +17,7 @@ modules = \
 	$(LIB)/mongodb-flatten/flatten.js \
 	$(LIB)/mongodb-schema/schema.js \
 	$(LIB)/mongodb-wild/wild.js \
+	$(SRC)/mesh.ops.js \
 	$(SRC)/mongodb.insertArray.js \
 	$(SRC)/underscore.deepExtend.js \
 	$(SRC)/underscore.deepPluck.js \
