@@ -9,6 +9,29 @@ the mongo shell.  It includes some useful libraries, as well as new functions
 for dealing with Mongo collections and queries.
 
 
+## Installation ##
+
+**Download:** [mesh.js](https://github.com/skratchdot/mesh/raw/master/mesh.js)
+
+#### Option 1 ####
+
+Add this script to your .mongorc.js file.  
+
+_See:_ [http://www.mongodb.org/display/DOCS/Overview+-+The+MongoDB+Interactive+Shell#Overview-TheMongoDBInteractiveShell-.mongorc.js](http://www.mongodb.org/display/DOCS/Overview+-+The+MongoDB+Interactive+Shell#Overview-TheMongoDBInteractiveShell-.mongorc.js)
+
+_Example .mongorc.js:_
+
+    load('mesh.js');
+    load('mesh.config.js');
+
+
+#### Option 2 ####
+
+Start the shell after executing this script  
+
+    mongo --shell mesh.js
+
+
 ## What's Included? ##
 
 - [underscore.js](http://documentcloud.github.com/underscore/) - Underscore.js is a
@@ -60,29 +83,6 @@ for dealing with Mongo collections and queries.
   count/sum/avg/max/min of all bson sizes for the given query/collection.
 
 
-## Installation ##
-
-**Download:** [mesh.js](https://github.com/skratchdot/mesh/raw/master/mesh.js)
-
-### Option 1 ###
-
-Add this script to your .mongorc.js file.  
-
-_See:_ [http://www.mongodb.org/display/DOCS/Overview+-+The+MongoDB+Interactive+Shell#Overview-TheMongoDBInteractiveShell-.mongorc.js](http://www.mongodb.org/display/DOCS/Overview+-+The+MongoDB+Interactive+Shell#Overview-TheMongoDBInteractiveShell-.mongorc.js)
-
-_Example .mongorc.js:_
-
-    load('mesh.js');
-    load('mesh.config.js');
-
-
-### Option 2 ###
-
-Start the shell after executing this script  
-
-    mongo --shell mesh.js
-
-
 ## Configuration ##
 
 You can configure mesh by calling **mesh.config(settings)**. The benefit of keeping a config file,
@@ -109,6 +109,7 @@ Or if you are using .mongorc.js:
 
     load('mesh.js');
     load('mesh.config.js');
+
 
 ## Usage ##
 
@@ -140,9 +141,10 @@ coming soon
 
 #### v1.5.0 - Released September 25, 2013
   * using grunt.js as the build system
-  * adding mesh.idrange - search collections for documents with ids created between 2 datetimes
-  * adding mesh.sizeinfo - reports the count/sum/avg/max/min of all bson sizes for the given
-    query/collection.
+  * adding [mesh.idrange.js](https://github.com/skratchdot/mesh/blob/master/src/mesh.idrange.js) - search collections
+    for documents with ids created between 2 datetimes
+  * adding [mesh.sizeinfo.js](https://github.com/skratchdot/mesh/blob/master/src/mesh.sizeinfo.js) -
+    reports the count/sum/avg/max/min of all bson sizes for the given query/collection.
   * updating the following libraries: [JSON-js](https://github.com/douglascrockford/JSON-js),
   [moment](http://momentjs.com/), [underscore.js](http://documentcloud.github.com/underscore/),
   [underscore.string.js](http://epeli.github.com/underscore.string/)
