@@ -14,18 +14,18 @@ _.mixin({
 				delimiter = defaultDelimiter;
 			}
 			return _.map(obj, function (value) {
-		        var arr, i;
-		        if (typeof key === 'string') {
-		            arr = key.split(delimiter);
-		            for (i = 0; i < arr.length; i++) {
-		                if (value && typeof value === 'object' && value.hasOwnProperty(arr[i])) {
-		                    value = value[arr[i]];
-		                } else {
-		                    return;
-		                }
-		            }
-		            return value;
-		        }
+				var arr, i;
+				if (typeof key === 'string') {
+					arr = key.split(delimiter);
+					for (i = 0; i < arr.length; i++) {
+						if (value && typeof value === 'object' && value.hasOwnProperty(arr[i])) {
+							value = value[arr[i]];
+						} else {
+							return;
+						}
+					}
+					return value;
+				}
 			});
 		};
 

@@ -1,3 +1,5 @@
 .DS_Store
 .project
+_unused
 mesh.config.js
+node_modules

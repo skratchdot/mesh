@@ -1,3 +1,4 @@
+/*global _, mesh */
 
 // Mix in non-conflicting functions to the Underscore namespace
 _.mixin(_.str.exports());

@@ -53,6 +53,12 @@ for dealing with Mongo collections and queries.
 
 - [DBCollection.insertArray()](https://github.com/skratchdot/mesh/blob/master/src/mongodb.insertArray.js) - insert an array of objects into a collection
 
+- [mesh.idrange.js](https://github.com/skratchdot/mesh/blob/master/src/mesh.idrange.js) - search collections
+  for documents with ids created between 2 datetimes
+
+- [mesh.sizeinfo.js](https://github.com/skratchdot/mesh/blob/master/src/mesh.sizeinfo.js) - reports the
+  count/sum/avg/max/min of all bson sizes for the given query/collection.
+
 
 ## Installation ##
 
@@ -124,7 +130,22 @@ coming soon
     git submodule foreach git pull
 
 
+#### Building mesh.js ####
+
+    npm install
+    grunt
+
+
 ## Version History ##
+
+#### v1.5.0 - Released September 25, 2013
+  * using grunt.js as the build system
+  * adding mesh.idrange - search collections for documents with ids created between 2 datetimes
+  * adding mesh.sizeinfo - reports the count/sum/avg/max/min of all bson sizes for the given
+    query/collection.
+  * updating the following libraries: [JSON-js](https://github.com/douglascrockford/JSON-js),
+  [moment](http://momentjs.com/), [underscore.js](http://documentcloud.github.com/underscore/),
+  [underscore.string.js](http://epeli.github.com/underscore.string/)
 
 #### v1.4.3 - Released March 7, 2013
   * adding mesh.ops which prints all operations.

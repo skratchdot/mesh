@@ -4,6 +4,6 @@
 _.mixin({
 	stdev : function (obj, iterator, context) {
 		'use strict';
-	    return Math.sqrt(_.variance(obj, iterator, context));
+		return Math.sqrt(_.variance(obj, iterator, context));
 	}
 });

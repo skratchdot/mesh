@@ -1,0 +1,33 @@
+{
+	"name": "mesh",
+	"version": "1.5.0",
+	"description": "mesh - the MongoDB Extended Shell",
+	"private": true,
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/skratchdot/mesh.git"
+	},
+	"keywords": [
+		"mongodb",
+		"cli"
+	],
+	"author": "skratchdot",
+	"licenses": [
+		{
+			"type": "GPL",
+			"url": "http://skratchdot.com/projects/mesh/blob/master/LICENSE-GPL"
+		}, {
+			"type": "MIT",
+			"url": "http://skratchdot.com/projects/mesh/blob/master/LICENSE-MIT"
+		}
+	],
+	"bugs": {
+		"url": "https://github.com/skratchdot/mesh/issues"
+	},
+	"devDependencies": {
+		"grunt-contrib-concat": "~0.3.0",
+		"grunt-contrib-jshint": "~0.6.4",
+		"grunt-text-replace": "~0.3.8",
+		"grunt": "~0.4.1"
+	}
+}

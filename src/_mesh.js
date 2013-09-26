@@ -1,4 +1,4 @@
-/*jslint maxerr: 50, indent: 4, nomen: true, plusplus: true */
+/*jslint nomen: true, plusplus: true, smarttabs: true, unused: false */
 /*global print, _, moment, db, ObjectId, hostname */
 /*!
  * mesh - the MongoDB Extended Shell
@@ -11,7 +11,7 @@
  * Included Libraries: https://github.com/skratchdot/mesh/#whats-included
  *       Dependencies: MongoDB v1.8+
  * 
- * Copyright 2012 <skratchdot.com>
+ * Copyright @YEAR@ <skratchdot.com>
  *   Dual licensed under the MIT or GPL Version 2 licenses.
  *   https://raw.github.com/skratchdot/mesh/master/LICENSE-MIT.txt
  *   https://raw.github.com/skratchdot/mesh/master/LICENSE-GPL.txt
@@ -21,6 +21,7 @@ var mesh = (function (global) {
 	'use strict';
 
 	var api,
+		version = "@VERSION@",
 		lastTime = null,
 		config = {
 			defaultPrompt : 0,	// 0-4 or a string
@@ -57,7 +58,7 @@ var mesh = (function (global) {
 	 * Print the current version
 	 */
 	api.version = function () {
-		return print('mesh (the MongoDB Extended Shell) version: @VERSION@');
+		return print('mesh (the MongoDB Extended Shell) version: ' + version);
 	};
 
 	/*
